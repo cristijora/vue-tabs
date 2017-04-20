@@ -1,7 +1,7 @@
 # (WIP) Vue-tabs
 
 ## Demo
-[Basic demo](https://jsfiddle.net/CristiJ/b44cc4dq/11/) WIP
+[Basic demo](https://jsfiddle.net/CristiJ/b44cc4dq/19/) WIP
 ## Usage
 ```js
 Vue.use(VueTabs)
