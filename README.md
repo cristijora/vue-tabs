@@ -1,24 +1,51 @@
-# (WIP) Vue-tabs
+# Vue-tabs
+Simplified, customizable bootstrap based tabs
+Vue-tabs is a tab component which simplifies the usage of tabs and their customization
+## Demos
+* [Basic demo](https://jsfiddle.net/CristiJ/b44cc4dq/22/)
+* [Icons and colors](https://jsfiddle.net/CristiJ/b44cc4dq/26/)
+* [Full width centered tabs with text bellow](https://jsfiddle.net/CristiJ/b44cc4dq/29/)
+* [Vertical tabs](https://jsfiddle.net/CristiJ/b44cc4dq/32/)
 
-## Demo
-[Basic demo](https://jsfiddle.net/CristiJ/b44cc4dq/19/) WIP
 ## Usage
+## NPM
+`npm install vue-nav-tabs`
+
+## Or alternatively directly include the javascript
+Download the css and js files from `dist` folder or reference them directly from github (check jsfiddle links)
+```html
+<link rel="stylesheet" href="vue-tabs.min.css">
+<script src="vue-tabs.js"></script>
+```
+## Component registration
 ```js
+//global registration
+import 'vue-nav-tabs'
+import 'vue-nav-tabs/dist/vue-nav-tabs.min.css'
 Vue.use(VueTabs)
+
+//local registration
+import {VueTabs, VTab} from 'vue-nav-tabs'
+import 'vue-nav-tabs/dist/vue-nav-tabs.min.css'
+//component code
+components: {
+  VueTabs,
+  VTab
+}
 ```
 ```html
 <vue-tabs>
-    <tab-content title="First tab">
+    <v-tab title="First tab">
       First tab content
-    </tab-content>
+    </v-tab>
 
-    <tab-content title="Second tab">
+    <v-tab title="Second tab">
       Second tab content
-    </tab-content>
+    </v-tab>
 
-    <tab-content title="Third tab">
+    <v-tab title="Third tab">
       Third tab content
-    </tab-content>
+    </v-tab>
 </vue-tabs>
 ```
 
@@ -52,13 +79,17 @@ props: {
 }
 ```
 
-## Tab-content props
+## V-tab props
 
 ```js
 props: {
-  startIndex: {
-    type: Number,
-    default: 0
+  title: {
+    type: String,
+    default: ''
+  },
+  icon: {
+    type: String,
+    default: ''
   }
 }
 ```
