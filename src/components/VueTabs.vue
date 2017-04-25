@@ -6,7 +6,7 @@
             :tab="tab"
             :index="index"
             :click-handler="navigateToTab">
-        <li :class="{active:tab.active}" class="tab">
+        <li :class="{active:tab.active}" class="tab" :key="tab">
           <span v-if="textPosition === 'top'" class="title title_top" :style="tab.active ? activeTitleColor: {}">
               {{tab.title}}
           </span>
@@ -26,6 +26,7 @@
 
         </li>
       </slot>
+
     </ul>
     <div class="tab-content">
       <slot>
@@ -35,6 +36,7 @@
 </template>
 <script>
   export default{
+    name: 'vue-tabs',
     props: {
       activeTabColor: String,
       activeTextColor: String,
@@ -74,6 +76,9 @@
       }
     },
     computed: {
+      tabCount () {
+        return this.tabs.length
+      },
       isTabShape () {
         return this.type === 'tabs'
       },
@@ -117,25 +122,28 @@
         return true
       },
       changeTab (oldIndex, newIndex) {
+        if (newIndex < 0 || newIndex >= this.tabCount) {
+          return
+        }
         let oldTab = this.tabs[oldIndex]
         let newTab = this.tabs[newIndex]
         if (oldTab) {
           oldTab.active = false
-        }
-        if (newTab) {
-          newTab.active = true
+          if (newTab) {
+            newTab.active = true
+          }
         }
         this.activeTabIndex = newIndex
         this.tryChangeRoute(newTab)
       },
       tryChangeRoute (tab) {
-        if (this.$router && tab.route) {
+        if (this.$router && tab && tab.route) {
           this.$router.push(tab.route)
         }
       }
     },
     mounted () {
-      this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')
+      this.tabs = this.$children.filter((comp) => comp.$options.name === 'v-tab')
       if (this.tabs.length > 0 && this.startIndex === 0) {
         let firstTab = this.tabs[this.activeTabIndex]
         firstTab.active = true

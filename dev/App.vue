@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-tabs class="card" >
+    <vue-tabs class="card">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -8,9 +8,12 @@
           </a>
         </li>
       </template>-->
-
       <v-tab title="First tab" icon="ti-bag">
-        First tab
+        <div>adsdaasd</div>
+        <div>adsdaasd</div>
+        <div>adsdaasd</div>
+        <div>adsdaasd</div>
+        <div>adsdaasd</div>
       </v-tab>
 
       <v-tab title="Second tab" icon="ti-bag">
@@ -20,12 +23,12 @@
       <v-tab title="Third tab" icon="ti-bag">
         Third tab
       </v-tab>
+
     </vue-tabs>
   </div>
 </template>
 
 <script>
-
   export default {
     name: 'app',
     methods: {
@@ -59,6 +62,32 @@
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
+  }
+
+  .list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .list-complete-enter, .list-complete-leave-to
+    /* .list-complete-leave-active for <2.1.8 */
+  {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .list-complete-leave-active {
+    position: absolute;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+
+  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+  {
+    opacity: 0
   }
 
 </style>

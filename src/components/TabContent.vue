@@ -1,22 +1,21 @@
 <template>
-  <div v-if="active" class="tab-container">
+  <v-touch v-on:swiperight="onSwipeRight" v-on:swipeleft="onSwipeLeft" tag="div" v-if="active" class="tab-container">
     <slot>
     </slot>
-  </div>
+  </v-touch>
 </template>
 <script>
-
+  import {component as VTouch} from 'vue-touch'
   export default{
-    name: 'tab-content',
+    name: 'v-tab',
+    components: {
+      VTouch
+    },
     props: {
       title: {
         type: String,
         default: ''
       },
-      /***
-       * Icon name for the upper circle corresponding to the tab
-       * Supports themify icons only for now.
-       */
       icon: {
         type: String,
         default: ''
@@ -30,11 +29,32 @@
       },
       route: {
         type: [String, Object]
+      },
+      transitionName: String,
+      transitionMode: String
+    },
+    computed: {
+      isValidParent () {
+        return this.$parent.$options.name === 'vue-tabs'
       }
     },
     data () {
       return {
         active: false
+      }
+    },
+    methods: {
+      onSwipeLeft () {
+        if (this.isValidParent) {
+          let activeTabIndex = this.$parent.activeTabIndex
+          this.$parent.changeTab(activeTabIndex, activeTabIndex + 1)
+        }
+      },
+      onSwipeRight () {
+        if (this.isValidParent) {
+          let activeTabIndex = this.$parent.activeTabIndex
+          this.$parent.changeTab(activeTabIndex, activeTabIndex - 1)
+        }
       }
     }
   }
