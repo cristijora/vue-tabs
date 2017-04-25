@@ -40,10 +40,16 @@
     props: {
       activeTabColor: String,
       activeTextColor: String,
+      /**
+       * Tab title position: center | bottom | top
+       */
       textPosition: {
         type: String,
         default: 'center'
       },
+      /**
+       * Tab type: tabs | pills
+       */
       type: {
         type: String,
         default: 'tabs'
@@ -52,16 +58,11 @@
         type: String,
         default: 'horizontal'
       },
-      centered: Boolean,
       /**
-       * Name of the transition when transition between steps
-       * */
-      transition: {
-        type: String,
-        default: ''
-      },
+       * Centers the tabs and makes the container div full width
+       */
+      centered: Boolean,
       /***
-       *
        * Index of the initial tab to display
        */
       startIndex: {
