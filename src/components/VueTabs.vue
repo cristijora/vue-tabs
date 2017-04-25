@@ -1,14 +1,31 @@
 <template>
-  <div class="vue-tabs">
-    <ul class="nav nav-tabs">
-      <li v-for="(tab, index) in tabs" :class="{active:tab.active}">
-        <a href="" @click.prevent="navigateToTab(index)">
-          <div v-if="tab.active">
-            <i :class="tab.icon">{{tab.title}}</i>
-          </div>
-          <i v-if="!tab.active" :class="tab.icon" class="icon">{{tab.title}}</i>
-        </a>
-      </li>
+  <div class="vue-tabs" :class="stackedClass">
+    <ul :class="classList">
+
+      <slot name="tab" v-for="(tab, index) in tabs"
+            :tab="tab"
+            :index="index"
+            :click-handler="navigateToTab">
+        <li :class="{active:tab.active}" class="tab">
+          <span v-if="textPosition === 'top'" class="title title_top" :style="tab.active ? activeTitleColor: {}">
+              {{tab.title}}
+          </span>
+
+          <a href="" @click.prevent="navigateToTab(index)" :style="tab.active ? activeTabStyle : {}">
+            <i :class="tab.icon">
+              <span v-if="textPosition === 'center'">
+                 {{tab.title}}
+              </span>
+            </i>
+          </a>
+
+          <span v-if="textPosition === 'bottom'" class="title title_bottom"
+                :style="tab.active ? activeTitleColor: {}">
+              {{tab.title}}
+          </span>
+
+        </li>
+      </slot>
     </ul>
     <div class="tab-content">
       <slot>
@@ -19,17 +36,21 @@
 <script>
   export default{
     props: {
-      /***
-       * Applies to text, border and circle
-       */
-      color: {
+      activeTabColor: String,
+      activeTextColor: String,
+      textPosition: {
         type: String,
-        default: '#e74c3c'
+        default: 'center'
       },
-      shape: {
+      type: {
         type: String,
-        default: 'tab'
+        default: 'tabs'
       },
+      direction: {
+        type: String,
+        default: 'horizontal'
+      },
+      centered: Boolean,
       /**
        * Name of the transition when transition between steps
        * */
@@ -54,7 +75,31 @@
     },
     computed: {
       isTabShape () {
-        return this.shape === 'tab'
+        return this.type === 'tabs'
+      },
+      isStacked () {
+        return this.direction === 'vertical'
+      },
+      classList () {
+        let navType = this.isTabShape ? 'nav-tabs' : 'nav-pills'
+        let centerClass = this.centered ? 'nav-justified' : ''
+        let isStacked = this.isStacked ? 'nav-stacked' : ''
+        let classes = `nav ${navType} ${centerClass} ${isStacked}`
+        return classes
+      },
+      stackedClass () {
+        return this.isStacked ? 'stacked' : ''
+      },
+      activeTabStyle () {
+        return {
+          backgroundColor: this.activeTabColor,
+          color: this.activeTextColor
+        }
+      },
+      activeTitleColor () {
+        return {
+          color: this.activeTabColor
+        }
       }
     },
     methods: {
@@ -63,6 +108,7 @@
           this.changeTab(this.activeTabIndex, index)
         }
       },
+
       beforeTabChange (index) {
         let oldTab = this.tabs[index]
         if (oldTab && oldTab.beforeChange !== undefined) {
@@ -74,16 +120,13 @@
         let oldTab = this.tabs[oldIndex]
         let newTab = this.tabs[newIndex]
         if (oldTab) {
-          oldTab.show = false
           oldTab.active = false
         }
         if (newTab) {
-          newTab.show = true
           newTab.active = true
         }
         this.activeTabIndex = newIndex
         this.tryChangeRoute(newTab)
-        return true
       },
       tryChangeRoute (tab) {
         if (this.$router && tab.route) {
@@ -93,24 +136,18 @@
     },
     mounted () {
       this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')
-      if (this.tabs.length > 0) {
+      if (this.tabs.length > 0 && this.startIndex === 0) {
         let firstTab = this.tabs[this.activeTabIndex]
-        firstTab.show = true
         firstTab.active = true
         this.tryChangeRoute(firstTab)
       }
       if (this.startIndex < this.tabs.length) {
+        let tabToActivate = this.tabs[this.startIndex]
         this.activeTabIndex = this.startIndex
+        tabToActivate.active = true
         this.tryChangeRoute(this.tabs[this.startIndex])
       } else {
         console.warn(`Prop startIndex set to ${this.startIndex} is greater than the number of tabs - ${this.tabs.length}. Make sure that the starting index is less than the number of tabs registered`)
-      }
-    },
-    watch: {
-      activeTabIndex: function (newVal, oldVal) {
-        if (this.beforeTabChange(oldVal)) {
-          this.changeTab(oldVal, newVal)
-        }
       }
     }
   }

@@ -1,17 +1,25 @@
 <template>
   <div>
-    <vue-tabs class="card col-xs-8 col-xs-offset-2">
-      <tab-content title="First tab" icon="ti-">
-        <div class="col-xs-10">First tab</div>
-      </tab-content>
+    <vue-tabs class="card" >
+      <!--<template slot="tab" scope="props">
+        <li :class="{active:props.tab.active}" >
+          <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
+           {{props.tab.title}}
+          </a>
+        </li>
+      </template>-->
 
-      <tab-content title="Second tab">
-        <div class="col-xs-10">Second</div>
-      </tab-content>
+      <v-tab title="First tab" icon="ti-bag">
+        First tab
+      </v-tab>
 
-      <tab-content title="Third tab">
-        <div class="col-xs-10">Third tab</div>
-      </tab-content>
+      <v-tab title="Second tab" icon="ti-bag">
+        Second
+      </v-tab>
+
+      <v-tab title="Third tab" icon="ti-bag">
+        Third tab
+      </v-tab>
     </vue-tabs>
   </div>
 </template>
