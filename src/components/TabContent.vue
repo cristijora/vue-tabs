@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="active" class="tab-container">
     <slot>
     </slot>
   </div>
