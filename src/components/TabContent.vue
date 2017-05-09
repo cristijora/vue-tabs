@@ -1,16 +1,12 @@
 <template>
-  <v-touch v-on:swiperight="onSwipeRight" v-on:swipeleft="onSwipeLeft" tag="div" v-if="active" class="tab-container">
+  <div>
     <slot>
     </slot>
-  </v-touch>
+  </div>
 </template>
 <script>
-  import {component as VTouch} from 'vue-touch'
   export default{
     name: 'v-tab',
-    components: {
-      VTouch
-    },
     props: {
       title: {
         type: String,
@@ -41,20 +37,6 @@
     data () {
       return {
         active: false
-      }
-    },
-    methods: {
-      onSwipeLeft () {
-        if (this.isValidParent) {
-          let activeTabIndex = this.$parent.activeTabIndex
-          this.$parent.changeTab(activeTabIndex, activeTabIndex + 1)
-        }
-      },
-      onSwipeRight () {
-        if (this.isValidParent) {
-          let activeTabIndex = this.$parent.activeTabIndex
-          this.$parent.changeTab(activeTabIndex, activeTabIndex - 1)
-        }
       }
     }
   }
