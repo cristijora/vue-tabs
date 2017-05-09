@@ -102,8 +102,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "dependencies": {
-    "vue-touch": "^2.0.0-beta.4"
-  }
+  ]
 }
