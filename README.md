@@ -21,12 +21,12 @@ Download the css and js files from `dist` folder or reference them directly from
 ```js
 //global registration
 import VueTabs from 'vue-nav-tabs'
-import 'vue-nav-tabs/dist/vue-nav-tabs.min.css'
+import 'vue-nav-tabs/dist/vue-tabs.min.css'
 Vue.use(VueTabs)
 
 //local registration
 import {VueTabs, VTab} from 'vue-nav-tabs'
-import 'vue-nav-tabs/dist/vue-nav-tabs.min.css'
+import 'vue-nav-tabs/dist/vue-tabs.min.css'
 //component code
 components: {
   VueTabs,
