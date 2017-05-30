@@ -135,6 +135,7 @@
           }
         }
         this.activeTabIndex = newIndex
+        this.$emit('tab-change', newIndex)
         this.tryChangeRoute(newTab)
       },
       tryChangeRoute (tab) {
