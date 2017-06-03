@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-tabs class="card" @on-error="handleError">
+    <vue-tabs class="card" @on-error="handleError" centered>
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -8,7 +8,7 @@
           </a>
         </li>
       </template>-->
-      <v-tab title="First tab" icon="ti-bag" :before-change="validateFirstTab">
+      <v-tab title="First tab" icon="ti-bag" :before-change="validateFirstTab" id="test">
         <div>adsdaasd</div>
         <div>adsdaasd</div>
         <div>adsdaasd</div>
@@ -16,11 +16,11 @@
         <div>adsdaasd</div>
       </v-tab>
 
-      <v-tab title="Second tab" icon="ti-bag">
+      <v-tab title="Second tab" icon="ti-bag" id="test2">
         Second
       </v-tab>
 
-      <v-tab title="Third tab" icon="ti-bag">
+      <v-tab title="Third tab" icon="ti-bag" id="test3">
         Third tab
       </v-tab>
 

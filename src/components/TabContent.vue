@@ -1,8 +1,11 @@
 <template>
-  <div v-if="active" class="tab-container">
+  <section class="tab-container"
+           role="tabpanel"
+           :id="hash"
+           :aria-hidden="!active">
     <slot>
     </slot>
-  </div>
+  </section>
 </template>
 <script>
   export default{
@@ -23,6 +26,7 @@
       beforeChange: {
         type: Function
       },
+      id: String,
       route: {
         type: [String, Object]
       },
@@ -32,6 +36,9 @@
     computed: {
       isValidParent () {
         return this.$parent.$options.name === 'vue-tabs'
+      },
+      hash () {
+        return `#${this.id}`
       }
     },
     data () {
