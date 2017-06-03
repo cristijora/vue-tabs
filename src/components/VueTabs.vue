@@ -110,17 +110,59 @@
     },
     methods: {
       navigateToTab (index) {
-        if (this.beforeTabChange(this.activeTabIndex)) {
+        this.beforeTabChange(this.activeTabIndex, () => {
           this.changeTab(this.activeTabIndex, index)
+        })
+      },
+      setLoading (value) {
+        this.loading = value
+        this.$emit('on-loading', value)
+      },
+      setValidationError (tab, error) {
+        this.tabs[this.activeTabIndex].validationError = error
+        this.$emit('on-error', error)
+        if (error && tab.$emit) {
+          tab.$emit('on-error', error)
         }
       },
-
-      beforeTabChange (index) {
+      validateBeforeChange (promiseFn, tab, callback) {
+        this.setValidationError(tab, null)
+        // we have a promise
+        if (promiseFn.then && typeof promiseFn.then === 'function') {
+          this.setLoading(true)
+          promiseFn.then((res) => {
+            this.setLoading(false)
+            let validationResult = res === true
+            this.executeBeforeChange(validationResult, callback)
+          }).catch((error) => {
+            this.setLoading(false)
+            this.setValidationError(tab, error)
+          })
+          // we have a simple function
+        } else {
+          let validationResult = promiseFn === true
+          this.executeBeforeChange(validationResult, callback)
+        }
+      },
+      executeBeforeChange (validationResult, callback) {
+        this.$emit('on-validate', validationResult, this.activeTabIndex)
+        if (validationResult) {
+          callback()
+        } else {
+          this.tabs[this.activeTabIndex].validationError = 'error'
+        }
+      },
+      beforeTabChange (index, callback) {
+        if (this.loading) {
+          return
+        }
         let oldTab = this.tabs[index]
         if (oldTab && oldTab.beforeChange !== undefined) {
-          return oldTab.beforeChange()
+          let tabChangeRes = oldTab.beforeChange()
+          this.validateBeforeChange(tabChangeRes, oldTab, callback)
+        } else {
+          callback()
         }
-        return true
       },
       changeTab (oldIndex, newIndex) {
         if (newIndex < 0 || newIndex >= this.tabCount) {

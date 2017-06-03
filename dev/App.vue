@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-tabs class="card">
+    <vue-tabs class="card" @on-error="handleError">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -8,7 +8,7 @@
           </a>
         </li>
       </template>-->
-      <v-tab title="First tab" icon="ti-bag">
+      <v-tab title="First tab" icon="ti-bag" :before-change="validateFirstTab">
         <div>adsdaasd</div>
         <div>adsdaasd</div>
         <div>adsdaasd</div>
@@ -24,6 +24,7 @@
         Third tab
       </v-tab>
 
+      <div v-if="error">{{error}}</div>
     </vue-tabs>
   </div>
 </template>
@@ -32,9 +33,19 @@
 
   export default {
     name: 'app',
+    data(){
+      return {
+        error: '',
+      }
+    },
     methods: {
-      onComplete () {
-        alert('Yay!')
+      handleError(error){
+        this.error = error
+      },
+      validateFirstTab(){
+        return new Promise((resolve, reject) => {
+          resolve(true)
+        })
       }
     }
   }

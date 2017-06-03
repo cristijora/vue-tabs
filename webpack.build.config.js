@@ -76,10 +76,7 @@ module.exports = [
 				raw: true
 			}),*/
 			new ExtractTextPlugin({filename:"vue-tabs.min.css",  allChunks: true, fallback:"style-loader" }),
-			new StatsPlugin( {filename:"./stats.json",
-				chunkModules: true
-				//exclude: [/node_modules[\\\/]react/]
-			}),
+			new StatsPlugin('stats.json'),
 		],
 
 		module: {
