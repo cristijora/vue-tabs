@@ -19,7 +19,6 @@ Download the css and js files from `dist` folder or reference them directly from
 <link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.min.css">
 <script src="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.js"></script>
 
-Vue.use(VueTabs)
 ```
 ## Component registration
 ```js
