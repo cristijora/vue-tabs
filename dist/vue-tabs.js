@@ -194,7 +194,7 @@ var VueTabs = {
                             },
 
                             style: active ? _this.activeTabStyle : {} },
-                        [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
+                        [!tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
             });

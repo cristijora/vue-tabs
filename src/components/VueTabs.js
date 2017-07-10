@@ -142,7 +142,7 @@ export default{
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
-                            {this.textPosition !=='center' && !tab.$slots.title &&
+                            {!tab.$slots.title &&
                                 this.renderIcon(index)
                             }
                             {this.textPosition === 'center' &&
