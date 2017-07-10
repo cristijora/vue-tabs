@@ -8,24 +8,12 @@
           </a>
         </li>
       </template>-->
-      <v-tab title="First tab" icon="ti-bag" :before-change="validateFirstTab" id="test">
-        <div>adsdaasd</div>
-        <div>adsdaasd</div>
-        <div>adsdaasd</div>
-        <div>adsdaasd</div>
-        <div>adsdaasd</div>
+      <v-tab v-for="re in reList" :key="re.name" :title="re.name" icon="ti-user">
+        <div slot="title">{{re.name}} xx</div>
+        {{re.name}}
       </v-tab>
-
-      <v-tab title="Second tab" icon="ti-bag" id="test2">
-        Second
-      </v-tab>
-
-      <v-tab title="Third tab" icon="ti-bag" id="test3">
-        Third tab
-      </v-tab>
-
-      <div v-if="error">{{error}}</div>
     </vue-tabs>
+    <button @click="reList.push({name:'test'})">Add more!</button>
   </div>
 </template>
 
@@ -35,7 +23,7 @@
     name: 'app',
     data(){
       return {
-        error: '',
+        reList : []
       }
     },
     methods: {
@@ -47,6 +35,9 @@
           resolve(true)
         })
       }
+    },
+    mounted () {
+      this.reList = [{name:'name1'},{name:'name2'},{name:'name3'}]
     }
   }
 </script>

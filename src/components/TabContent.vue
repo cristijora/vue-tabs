@@ -3,6 +3,7 @@
            role="tabpanel"
            :id="hash"
            :aria-hidden="!active">
+    <slot name="title"></slot>
     <slot>
     </slot>
   </section>

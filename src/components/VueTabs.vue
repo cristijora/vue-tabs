@@ -6,18 +6,18 @@
             :tab="tab"
             :index="index"
             :click-handler="navigateToTab">
-        <li :class="{active:tab.active}" class="tab" :key="tab" role="presentation" >
+        <li :class="{active:tab.active}" class="tab" :key="tab" role="presentation">
           <span v-if="textPosition === 'top'" class="title title_top" :style="tab.active ? activeTitleColor: {}">
               {{tab.title}}
           </span>
 
           <a :href="`#${tab.id}`"
-            @click.prevent="navigateToTab(index)"
-            :style="tab.active ? activeTabStyle : {}"
-            :aria-selected="tab.active"
-            :aria-controls="`#${tab.id}`"
-            role="tab"
-            >
+             @click.prevent="navigateToTab(index)"
+             :style="tab.active ? activeTabStyle : {}"
+             :aria-selected="tab.active"
+             :aria-controls="`#${tab.id}`"
+             role="tab">
+
             <i :class="tab.icon">
               <span v-if="textPosition === 'center'">
                  {{tab.title}}
@@ -190,23 +190,39 @@
         if (this.$router && tab && tab.route) {
           this.$router.push(tab.route)
         }
+      },
+      getTabs () {
+        if (this.$slots.default) {
+          return this.$slots.default
+            .filter(comp => comp.componentOptions)
+            .map(comp => comp.componentInstance)
+        } else {
+          return []
+        }
+      },
+      initTabs () {
+        if (this.tabs.length > 0 && this.startIndex === 0) {
+          let firstTab = this.tabs[this.activeTabIndex]
+          firstTab.active = true
+          this.tryChangeRoute(firstTab)
+        }
+        if (this.startIndex < this.tabs.length) {
+          let tabToActivate = this.tabs[this.startIndex]
+          this.activeTabIndex = this.startIndex
+          tabToActivate.active = true
+          this.tryChangeRoute(this.tabs[this.startIndex])
+        }
       }
     },
+    updated () {
+      let currentTabs = this.getTabs()
+      if (this.tabs.length === currentTabs.length) return
+      this.tabs = currentTabs
+      this.initTabs()
+    },
     mounted () {
-      this.tabs = this.$children.filter((comp) => comp.$options.name === 'v-tab')
-      if (this.tabs.length > 0 && this.startIndex === 0) {
-        let firstTab = this.tabs[this.activeTabIndex]
-        firstTab.active = true
-        this.tryChangeRoute(firstTab)
-      }
-      if (this.startIndex < this.tabs.length) {
-        let tabToActivate = this.tabs[this.startIndex]
-        this.activeTabIndex = this.startIndex
-        tabToActivate.active = true
-        this.tryChangeRoute(this.tabs[this.startIndex])
-      } else {
-        console.warn(`Prop startIndex set to ${this.startIndex} is greater than the number of tabs - ${this.tabs.length}. Make sure that the starting index is less than the number of tabs registered`)
-      }
+      this.tabs = this.getTabs()
+      this.initTabs()
     }
   }
 </script>
