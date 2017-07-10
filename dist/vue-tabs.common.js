@@ -3,11 +3,9 @@
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.vueTabs = global.vueTabs || {})));
-}(this, (function (exports) { 'use strict';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 var VueTabs = {
     name: 'vue-tabs',
@@ -311,7 +309,3 @@ if (typeof window !== 'undefined' && window.Vue) {
 exports['default'] = VueTabsPlugin;
 exports.VueTabs = VueTabs;
 exports.VTab = VTab;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));

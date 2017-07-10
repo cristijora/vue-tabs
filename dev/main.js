@@ -1,21 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import FormWizard from './../src/index'
-const First = { template: '<div>First</div>' }
-const Second = { template: '<div>Second</div>' }
-const Third = { template: '<div>Third</div>' }
+import VueTabs from './../src/index'
+import './../dist/vue-tabs.min.css'
+import './themify-icons.css'
+const First = {template: '<div>First</div>'}
+const Second = {template: '<div>Second</div>'}
+const Third = {template: '<div>Third</div>'}
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/first', component: First },
-    { path: '/second', component: Second },
-    { path: '/third', component: Third }
+    {path: '/first', component: First},
+    {path: '/second', component: Second},
+    {path: '/third', component: Third}
   ]
 })
 Vue.use(VueRouter)
-Vue.use(FormWizard)
+Vue.use(VueTabs)
 
 Vue.config.productionTip = false
 
@@ -23,6 +25,5 @@ Vue.config.productionTip = false
 new Vue({
   router,
   el: '#app',
-  template: '<App/>',
-  components: {App}
+  render: h => h(App)
 })

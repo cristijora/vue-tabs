@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-tabs class="card" @on-error="handleError" centered>
+    <vue-tabs class="card" @on-error="handleError" centered v-model="tabName">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -8,12 +8,16 @@
           </a>
         </li>
       </template>-->
-      <v-tab v-for="re in reList" :key="re.name" :title="re.name" icon="ti-user">
-        <div slot="title">{{re.name}} xx</div>
+      <v-tab v-for="(re, index) in reList"
+             :key="re.name"
+             :title="re.name"
+             icon="ti-user">
         {{re.name}}
+        <div slot="title">Hey {{re.name}}</div>
       </v-tab>
     </vue-tabs>
     <button @click="reList.push({name:'test'})">Add more!</button>
+    <button @click="reList.splice(0,1)">Remove first</button>
   </div>
 </template>
 
@@ -23,17 +27,13 @@
     name: 'app',
     data(){
       return {
-        reList : []
+        reList : [],
+        tabName: 'name2'
       }
     },
     methods: {
       handleError(error){
         this.error = error
-      },
-      validateFirstTab(){
-        return new Promise((resolve, reject) => {
-          resolve(true)
-        })
       }
     },
     mounted () {
