@@ -44,8 +44,7 @@ export default{
             let navType = this.isTabShape ? 'nav-tabs' : 'nav-pills'
             let centerClass = this.centered ? 'nav-justified' : ''
             let isStacked = this.isStacked ? 'nav-stacked' : ''
-            let classes = `nav ${navType} ${centerClass} ${isStacked}`
-            return classes
+            return `nav ${navType} ${centerClass} ${isStacked}`
         },
         stackedClass () {
             return this.isStacked ? 'stacked' : ''
@@ -53,11 +52,6 @@ export default{
         activeTabStyle () {
             return {
                 backgroundColor: this.activeTabColor,
-                color: this.activeTextColor
-            }
-        },
-        activeTitleColor () {
-            return {
                 color: this.activeTextColor
             }
         }
@@ -113,12 +107,12 @@ export default{
         renderTabTitle (index, position = 'top') {
             if (this.tabs.length === 0) return
             let tab = this.tabs[index]
-            let {active, icon, title} = tab
-            let simpleTitle = ( <i class={icon}>
-                                  <span class={`title title_${position}`} style={active ? this.activeTitleColor : {}}>
+            let {active, title} = tab
+            let titleStyles = {color: this.activeTabColor}
+            if(position === 'center') titleStyles.color = this.activeTextColor
+            let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
                                     {title}
-                                  </span>
-                                </i>)
+                                  </span> )
 
             if (tab.$slots.title && position === 'center') return tab.$slots.title
             return simpleTitle

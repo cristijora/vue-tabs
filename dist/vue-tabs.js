@@ -56,8 +56,7 @@ var VueTabs = {
             var navType = this.isTabShape ? 'nav-tabs' : 'nav-pills';
             var centerClass = this.centered ? 'nav-justified' : '';
             var isStacked = this.isStacked ? 'nav-stacked' : '';
-            var classes = 'nav ' + navType + ' ' + centerClass + ' ' + isStacked;
-            return classes;
+            return 'nav ' + navType + ' ' + centerClass + ' ' + isStacked;
         },
         stackedClass: function stackedClass() {
             return this.isStacked ? 'stacked' : '';
@@ -65,11 +64,6 @@ var VueTabs = {
         activeTabStyle: function activeTabStyle() {
             return {
                 backgroundColor: this.activeTabColor,
-                color: this.activeTextColor
-            };
-        },
-        activeTitleColor: function activeTitleColor() {
-            return {
                 color: this.activeTextColor
             };
         }
@@ -133,17 +127,14 @@ var VueTabs = {
             if (this.tabs.length === 0) return;
             var tab = this.tabs[index];
             var active = tab.active,
-                icon = tab.icon,
                 title = tab.title;
 
+            var titleStyles = { color: this.activeTabColor };
+            if (position === 'center') titleStyles.color = this.activeTextColor;
             var simpleTitle = h(
-                'i',
-                { 'class': icon },
-                [h(
-                    'span',
-                    { 'class': 'title title_' + position, style: active ? this.activeTitleColor : {} },
-                    [title]
-                )]
+                'span',
+                { 'class': 'title title_' + position, style: active ? titleStyles : {} },
+                [title]
             );
 
             if (tab.$slots.title && position === 'center') return tab.$slots.title;
