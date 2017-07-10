@@ -34,8 +34,7 @@ var VueTabs = {
          * Centers the tabs and makes the container div full width
          */
         centered: Boolean,
-        value: [String, Number, Object],
-        onSelect: Function
+        value: [String, Number, Object]
     },
     data: function data() {
         return {
@@ -69,13 +68,12 @@ var VueTabs = {
         },
         activeTitleColor: function activeTitleColor() {
             return {
-                color: this.activeTabColor
+                color: this.activeTextColor
             };
         }
     },
     methods: {
         navigateToTab: function navigateToTab(index, route) {
-            this.onSelect && this.onSelect(this.activeTabIndex, index);
             this.changeTab(this.activeTabIndex, index, route);
         },
         activateTab: function activateTab(index) {
@@ -149,6 +147,20 @@ var VueTabs = {
             if (tab.$slots.title && position === 'center') return tab.$slots.title;
             return simpleTitle;
         },
+        renderIcon: function renderIcon(index) {
+            var h = this.$createElement;
+
+            if (this.tabs.length === 0) return;
+            var tab = this.tabs[index];
+            var icon = tab.icon;
+
+            var simpleIcon = h(
+                'i',
+                { 'class': icon },
+                []
+            );
+            if (!tab.$slots.title) return simpleIcon;
+        },
         renderTabs: function renderTabs() {
             var _this = this;
 
@@ -189,7 +201,7 @@ var VueTabs = {
                             },
 
                             style: active ? _this.activeTabStyle : {} },
-                        [_this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
+                        [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
             });

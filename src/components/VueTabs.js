@@ -58,7 +58,7 @@ export default{
         },
         activeTitleColor () {
             return {
-                color: this.activeTabColor
+                color: this.activeTextColor
             }
         }
     },
@@ -123,6 +123,13 @@ export default{
             if (tab.$slots.title && position === 'center') return tab.$slots.title
             return simpleTitle
         },
+        renderIcon (index) {
+            if (this.tabs.length === 0) return
+            let tab = this.tabs[index]
+            let {icon} = tab
+            let simpleIcon =  <i class={icon}></i>
+            if(!tab.$slots.title) return simpleIcon
+        },
         renderTabs () {
             return this.tabs.map((tab, index) => {
                 if (!tab) return
@@ -133,7 +140,7 @@ export default{
                         key={title}
                         role="presentation">
                         {this.textPosition === 'top' &&
-                        this.renderTabTitle(index, this.textPosition)
+                          this.renderTabTitle(index, this.textPosition)
                         }
                         <a href={`#${tab.id}`}
                            onClick={() => this.navigateToTab(index)}
@@ -141,6 +148,9 @@ export default{
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
+                            {this.textPosition !=='center' && !tab.$slots.title &&
+                                this.renderIcon(index)
+                            }
                             {this.textPosition === 'center' &&
                                this.renderTabTitle(index, this.textPosition)
                             }
