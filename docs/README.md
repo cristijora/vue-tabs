@@ -106,6 +106,8 @@ props: {
   }
 }
 ```
+!> **Important** Not all prop combinations will look ok or display correctly (especially centered with vertical direction).
+Feel free to do a PR if you fixed something :)
 
 ## Events
  

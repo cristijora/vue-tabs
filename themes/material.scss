@@ -46,6 +46,9 @@ $gray-color:  #999999;
         color: #FFFFFF !important;
         font-weight: $font-weight-bold;
       }
+      i{
+        font-size: 20px;
+      }
       &.disabled > a,
       &.disabled > a:hover {
         color: rgba(255,255,255,0.5);
@@ -99,9 +102,7 @@ $gray-color:  #999999;
       }
 
       i{
-        display: block;
-        font-size: 30px;
-        padding: 15px 0;
+        font-size: 20px;
       }
 
       &.active > a{

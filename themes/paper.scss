@@ -22,8 +22,6 @@ $medium-pale-bg:             #F1EAE0 !default;
   .nav-tabs-wrapper{
     display: inline-block;
     margin-bottom: -6px;
-    margin-left: 1.25%;
-    margin-right: 1.25%;
     position: relative;
     width: 100%;
   }
@@ -54,7 +52,7 @@ $medium-pale-bg:             #F1EAE0 !default;
         //height: 50px;
       }
 
-      :not(i):after{
+      a:after{
         border-bottom: 11px solid $white-color;
         border-left: 11px solid rgba(0, 0, 0, 0);
         border-right: 11px solid rgba(0, 0, 0, 0);
@@ -65,7 +63,7 @@ $medium-pale-bg:             #F1EAE0 !default;
         bottom: 0;
       }
 
-      :not(i):before{
+       a:before{
         border-bottom: 11px solid $medium-pale-bg;
         border-left: 11px solid rgba(0, 0, 0, 0);
         border-right: 11px solid rgba(0, 0, 0, 0);
@@ -97,7 +95,7 @@ $medium-pale-bg:             #F1EAE0 !default;
       > a{
         color: $font-color;
       }
-      :after{
+      a:after{
         border-right: 11px solid $white-color;
         border-top: 11px solid rgba(0, 0, 0, 0);
         border-bottom: 11px solid rgba(0, 0, 0, 0);
@@ -108,7 +106,7 @@ $medium-pale-bg:             #F1EAE0 !default;
         bottom: 7px;
       }
 
-      :before{
+      a:before{
         border-right: 11px solid $medium-pale-bg;
         border-top: 11px solid rgba(0, 0, 0, 0);
         border-bottom: 11px solid rgba(0, 0, 0, 0);
