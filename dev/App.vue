@@ -1,8 +1,6 @@
 <template>
   <div>
     <vue-tabs class="card" @on-error="handleError"
-              direction="vertical"
-              type="pills"
               v-model="tabName">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >

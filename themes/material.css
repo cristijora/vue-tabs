@@ -43,22 +43,24 @@
   .vue-tabs .nav > li > a > img {
     max-width: none; }
 
-.vue-tabs .nav-tabs > li {
-  float: left;
-  margin-bottom: -1px; }
-  .vue-tabs .nav-tabs > li > a {
-    margin-right: 2px;
-    line-height: 1.42857;
-    border: 1px solid transparent;
-    border-radius: 4px 4px 0 0; }
-    .vue-tabs .nav-tabs > li > a:hover {
-      border-color: #eeeeee #eeeeee #ddd; }
-  .vue-tabs .nav-tabs > li.active > a, .vue-tabs .nav-tabs > li.active > a:hover, .vue-tabs .nav-tabs > li.active > a:focus {
-    color: #555555;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-    cursor: default; }
+.vue-tabs .nav-tabs {
+  border-bottom: 1px solid #ddd; }
+  .vue-tabs .nav-tabs > li {
+    float: left;
+    margin-bottom: -1px; }
+    .vue-tabs .nav-tabs > li > a {
+      margin-right: 2px;
+      line-height: 1.42857;
+      border: 1px solid transparent;
+      border-radius: 4px 4px 0 0; }
+      .vue-tabs .nav-tabs > li > a:hover {
+        border-color: #eeeeee #eeeeee #ddd; }
+    .vue-tabs .nav-tabs > li.active > a, .vue-tabs .nav-tabs > li.active > a:hover, .vue-tabs .nav-tabs > li.active > a:focus {
+      color: #555555;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-bottom-color: transparent;
+      cursor: default; }
 
 .vue-tabs .nav-pills > li {
   float: left; }
