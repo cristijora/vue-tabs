@@ -1,6 +1,10 @@
 <template>
   <div>
-    <vue-tabs class="card" @on-error="handleError" centered v-model="tabName">
+    <vue-tabs class="card" @on-error="handleError" active-tab-color="#e74c3c"
+              active-text-color="white"
+              type="pills"
+              text-position="center"
+              centered v-model="tabName">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -13,6 +17,7 @@
              :title="re.name"
              icon="ti-user">
         {{re.name}}
+        <div slot="title">Hey {{re.name}}</div>
       </v-tab>
     </vue-tabs>
     <button @click="reList.push({name:'test'})">Add more!</button>

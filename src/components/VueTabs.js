@@ -113,7 +113,7 @@ export default{
             let titleStyles = {color: this.activeTabColor}
             if (position === 'center') titleStyles.color = this.activeTextColor
             let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
-                                        {position === 'center' && this.renderIcon(index)} {title}
+                                        {position === 'center' && this.renderIcon(index)}&nbsp;{title}
                                   </span> )
 
             if (tab.$slots.title) return tab.$slots.title
@@ -138,13 +138,14 @@ export default{
                         {this.textPosition === 'top' &&
                         this.renderTabTitle(index, this.textPosition)
                         }
-                        <a href={`#${tab.id}`}
+                        <a href="javascript:void(0)"
                            onClick={() => this.navigateToTab(index)}
                            style={active ? this.activeTabStyle : {}}
                            class={{'active_tab': active}}
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
+                            {this.textPosition !=='center' && !tab.$slots.title && this.renderIcon(index)}
                             {this.textPosition === 'center' &&
                               this.renderTabTitle(index, this.textPosition)
                             }

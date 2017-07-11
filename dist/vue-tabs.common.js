@@ -134,7 +134,7 @@ var VueTabs = {
             var simpleTitle = h(
                 'span',
                 { 'class': 'title title_' + position, style: active ? titleStyles : {} },
-                [position === 'center' && this.renderIcon(index), ' ', title]
+                [position === 'center' && this.renderIcon(index), '\xA0', title]
             );
 
             if (tab.$slots.title) return tab.$slots.title;
@@ -182,7 +182,7 @@ var VueTabs = {
                     [_this.textPosition === 'top' && _this.renderTabTitle(index, _this.textPosition), h(
                         'a',
                         {
-                            attrs: { href: '#' + tab.id,
+                            attrs: { href: 'javascript:void(0)',
 
                                 'aria-selected': active,
                                 'aria-controls': '#' + id,
@@ -195,7 +195,7 @@ var VueTabs = {
 
                             style: active ? _this.activeTabStyle : {},
                             'class': { 'active_tab': active } },
-                        [_this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
+                        [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
             });
