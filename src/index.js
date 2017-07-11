@@ -9,6 +9,7 @@ const VueTabsPlugin = {
 // Automatic installation if Vue has been added to the global scope.
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VueTabsPlugin)
+  window.VueTabs = VueTabsPlugin
 }
 export default VueTabsPlugin
 export {

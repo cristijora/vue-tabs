@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import VueTabs from './../src/index'
-import './../themes/paper.scss'
+import './../themes/vue-tabs.scss'
 import './themify-icons.css'
 const First = {template: '<div>First</div>'}
 const Second = {template: '<div>Second</div>'}

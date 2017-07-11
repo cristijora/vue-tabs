@@ -134,7 +134,7 @@ var VueTabs = {
             var simpleTitle = h(
                 'span',
                 { 'class': 'title title_' + position, style: active ? titleStyles : {} },
-                [title]
+                [position === 'center' && this.renderIcon(index), ' ', title]
             );
 
             if (tab.$slots.title) return tab.$slots.title;
@@ -195,7 +195,7 @@ var VueTabs = {
 
                             style: active ? _this.activeTabStyle : {},
                             'class': { 'active_tab': active } },
-                        [_this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
+                        [_this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
             });
@@ -318,6 +318,7 @@ var VueTabsPlugin = {
 // Automatic installation if Vue has been added to the global scope.
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VueTabsPlugin);
+  window.VueTabs = VueTabsPlugin;
 }
 
 exports['default'] = VueTabsPlugin;

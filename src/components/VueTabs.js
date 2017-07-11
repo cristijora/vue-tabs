@@ -113,7 +113,7 @@ export default{
             let titleStyles = {color: this.activeTabColor}
             if (position === 'center') titleStyles.color = this.activeTextColor
             let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
-                                    {title}
+                                        {position === 'center' && this.renderIcon(index)} {title}
                                   </span> )
 
             if (tab.$slots.title) return tab.$slots.title
@@ -145,9 +145,8 @@ export default{
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
-                            {this.renderIcon(index)}
                             {this.textPosition === 'center' &&
-                            this.renderTabTitle(index, this.textPosition)
+                              this.renderTabTitle(index, this.textPosition)
                             }
                         </a>
                         {this.textPosition === 'bottom' &&
