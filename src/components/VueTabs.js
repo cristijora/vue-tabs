@@ -109,20 +109,20 @@ export default{
             let tab = this.tabs[index]
             let {active, title} = tab
             let titleStyles = {color: this.activeTabColor}
-            if(position === 'center') titleStyles.color = this.activeTextColor
+            if (position === 'center') titleStyles.color = this.activeTextColor
             let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
                                     {title}
                                   </span> )
 
-            if (tab.$slots.title && position === 'center') return tab.$slots.title
+            if (tab.$slots.title) return tab.$slots.title
             return simpleTitle
         },
         renderIcon (index) {
             if (this.tabs.length === 0) return
             let tab = this.tabs[index]
             let {icon} = tab
-            let simpleIcon =  <i class={icon}></i>
-            if(!tab.$slots.title) return simpleIcon
+            let simpleIcon = <i class={icon}></i>
+            if (!tab.$slots.title) return simpleIcon
         },
         renderTabs () {
             return this.tabs.map((tab, index) => {
@@ -134,19 +134,18 @@ export default{
                         key={title}
                         role="presentation">
                         {this.textPosition === 'top' &&
-                          this.renderTabTitle(index, this.textPosition)
+                        this.renderTabTitle(index, this.textPosition)
                         }
                         <a href={`#${tab.id}`}
                            onClick={() => this.navigateToTab(index)}
                            style={active ? this.activeTabStyle : {}}
+                           class={{'active_tab': active}}
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
-                            {!tab.$slots.title &&
-                                this.renderIcon(index)
-                            }
+                            {this.renderIcon(index)}
                             {this.textPosition === 'center' &&
-                               this.renderTabTitle(index, this.textPosition)
+                            this.renderTabTitle(index, this.textPosition)
                             }
                         </a>
                         {this.textPosition === 'bottom' &&
@@ -159,14 +158,19 @@ export default{
     },
     render () {
         const tabList = this.renderTabs()
-        return (<div class={['vue-tabs', this.stackedClass]}>
-            <ul class={this.classList} role="tablist">
-                {tabList}
-            </ul>
-            <div class="tab-content">
-                {this.$slots.default}
-            </div>
-        </div>)
+        return (
+            <div class={['vue-tabs',this.stackedClass ]}>
+                <div class={[{'nav-tabs-navigation': !this.isStacked}, {'left-vertical-tabs': this.isStacked }]}>
+                    <div class={['nav-tabs-wrapper', this.stackedClass]}>
+                        <ul class={this.classList} role="tablist">
+                            {tabList}
+                        </ul>
+                    </div>
+                </div>
+                <div class={['tab-content',{'right-text-tabs': this.isStacked } ]}>
+                    {this.$slots.default}
+                </div>
+            </div>)
     },
     watch: {
         tabs: function (newList) {

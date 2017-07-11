@@ -21,7 +21,8 @@
     "test": "echo 'no tests!' && npm run lint",
     "prepublish": "npm run build",
     "lint": "xo",
-    "build": "bili --name vue-tabs --format cjs --format umd --compress --banner --js babel && node-sass themes/ -o themes/",
+    "build:css": "node-sass themes/ -o themes/ && node-sass themes/vue-tabs.scss dist/vue-tabs.min.css --output-style compressed",
+    "build": "bili --name vue-tabs --format cjs --format umd --compress --banner --js babel && npm run build:css",
     "build:example": "poi build",
     "dev": "poi --port 5000",
     "deploy": "npm run build:example && gh-pages -d example/dist"

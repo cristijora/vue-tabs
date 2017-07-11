@@ -23,8 +23,7 @@
       display: block;
       padding: 10px 15px; }
       .vue-tabs .nav > li > a:hover, .vue-tabs .nav > li > a:focus {
-        text-decoration: none;
-        background-color: #eeeeee; }
+        text-decoration: none; }
     .vue-tabs .nav > li span.title {
       display: flex;
       justify-content: center; }
@@ -43,24 +42,22 @@
   .vue-tabs .nav > li > a > img {
     max-width: none; }
 
-.vue-tabs .nav-tabs {
-  border-bottom: 1px solid #ddd; }
-  .vue-tabs .nav-tabs > li {
-    float: left;
-    margin-bottom: -1px; }
-    .vue-tabs .nav-tabs > li > a {
-      margin-right: 2px;
-      line-height: 1.42857;
-      border: 1px solid transparent;
-      border-radius: 4px 4px 0 0; }
-      .vue-tabs .nav-tabs > li > a:hover {
-        border-color: #eeeeee #eeeeee #ddd; }
-    .vue-tabs .nav-tabs > li.active > a, .vue-tabs .nav-tabs > li.active > a:hover, .vue-tabs .nav-tabs > li.active > a:focus {
-      color: #555555;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-bottom-color: transparent;
-      cursor: default; }
+.vue-tabs .nav-tabs > li {
+  float: left;
+  margin-bottom: -1px; }
+  .vue-tabs .nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0; }
+    .vue-tabs .nav-tabs > li > a:hover {
+      border-color: #eeeeee #eeeeee #ddd; }
+  .vue-tabs .nav-tabs > li.active > a, .vue-tabs .nav-tabs > li.active > a:hover, .vue-tabs .nav-tabs > li.active > a:focus {
+    color: #555555;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default; }
 
 .vue-tabs .nav-pills > li {
   float: left; }
@@ -121,3 +118,99 @@
 
 .vue-tabs section[aria-hidden="true"] {
   display: none; }
+
+.vue-tabs.stacked {
+  display: flex;
+  flex-direction: row; }
+
+.vue-tabs .nav-tabs-navigation {
+  text-align: center;
+  border-bottom: 1px solid #F1EAE0;
+  margin-bottom: 30px; }
+  .vue-tabs .nav-tabs-navigation .nav > li > a {
+    padding-bottom: 20px; }
+
+.vue-tabs .nav-tabs-wrapper {
+  display: inline-block;
+  margin-bottom: -6px;
+  margin-left: 1.25%;
+  margin-right: 1.25%;
+  position: relative;
+  width: 100%; }
+
+.vue-tabs .nav-tabs {
+  border-bottom: 0 none;
+  font-size: 14px;
+  font-weight: 600; }
+  .vue-tabs .nav-tabs > li > a {
+    border: 0 none !important;
+    color: #A49E93; }
+  .vue-tabs .nav-tabs > li > a:hover {
+    color: #66615b; }
+  .vue-tabs .nav-tabs > li.active {
+    color: #66615b;
+    position: relative; }
+    .vue-tabs .nav-tabs > li.active > a,
+    .vue-tabs .nav-tabs > li.active > a:hover,
+    .vue-tabs .nav-tabs > li.active > a:focus {
+      background-color: transparent;
+      border: 0 none; }
+    .vue-tabs .nav-tabs > li.active :after {
+      border-bottom: 11px solid #FFFFFF;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      content: "";
+      display: inline-block;
+      position: absolute;
+      right: calc(50% - 11px);
+      bottom: 0; }
+    .vue-tabs .nav-tabs > li.active :before {
+      border-bottom: 11px solid #F1EAE0;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      content: "";
+      display: inline-block;
+      position: absolute;
+      right: calc(50% - 11px);
+      bottom: 1px; }
+
+.vue-tabs .nav-stacked {
+  border-right: 1px solid #F1EAE0;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 20px 0; }
+  .vue-tabs .nav-stacked > li > a {
+    color: #A49E93;
+    padding: 7px 25px;
+    text-align: right; }
+  .vue-tabs .nav-stacked > li > a:hover {
+    color: #66615b; }
+  .vue-tabs .nav-stacked > li.active > a {
+    color: #66615b; }
+  .vue-tabs .nav-stacked > li.active :after {
+    border-right: 11px solid #FFFFFF;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -1px;
+    bottom: 7px; }
+  .vue-tabs .nav-stacked > li.active :before {
+    border-right: 11px solid #F1EAE0;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 7px; }
+
+.vue-tabs .left-vertical-tabs {
+  width: 170px;
+  min-width: 170px; }
+
+.vue-tabs .right-text-tabs {
+  width: calc(100% - 170px);
+  float: left;
+  padding: 6px 15px; }

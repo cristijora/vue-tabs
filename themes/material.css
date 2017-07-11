@@ -118,3 +118,79 @@
 
 .vue-tabs section[aria-hidden="true"] {
   display: none; }
+
+.vue-tabs .nav-tabs {
+  background: #9c27b0;
+  border: 0;
+  border-radius: 3px;
+  padding: 0 15px; }
+  .vue-tabs .nav-tabs > li > a {
+    color: #FFFFFF;
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-size: 12px; }
+    .vue-tabs .nav-tabs > li > a:hover {
+      background-color: transparent;
+      border: 0; }
+  .vue-tabs .nav-tabs > li > a,
+  .vue-tabs .nav-tabs > li > a:hover,
+  .vue-tabs .nav-tabs > li > a:focus {
+    background-color: transparent;
+    border: 0 !important;
+    color: #FFFFFF !important;
+    font-weight: 600; }
+  .vue-tabs .nav-tabs > li.disabled > a,
+  .vue-tabs .nav-tabs > li.disabled > a:hover {
+    color: rgba(255, 255, 255, 0.5); }
+  .vue-tabs .nav-tabs > li .material-icons {
+    margin: -1px 5px 0 0; }
+  .vue-tabs .nav-tabs > li.active > a,
+  .vue-tabs .nav-tabs > li.active > a:hover,
+  .vue-tabs .nav-tabs > li.active > a:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color .1s .2s; }
+
+.section-dark .vue-tabs .nav-pills > li > a,
+.section-image .vue-tabs .nav-pills > li > a {
+  color: #999999; }
+
+.section-dark .vue-tabs .nav-pills > li > a:hover,
+.section-dark .vue-tabs .nav-pills > li > a:focus,
+.section-image .vue-tabs .nav-pills > li > a:hover,
+.section-image .vue-tabs .nav-pills > li > a:focus {
+  background-color: #EEEEEE; }
+
+.vue-tabs .nav-pills > li > a {
+  line-height: 24px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 100px;
+  text-align: center;
+  color: #555555;
+  transition: all .3s; }
+  .vue-tabs .nav-pills > li > a:hover {
+    background-color: rgba(200, 200, 200, 0.2); }
+
+.vue-tabs .nav-pills > li i {
+  display: block;
+  font-size: 30px;
+  padding: 15px 0; }
+
+.vue-tabs .nav-pills > li.active > a, .vue-tabs .nav-pills > li.active > a:focus, .vue-tabs .nav-pills > li.active > a:hover {
+  background-color: #9c27b0;
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4); }
+
+.vue-tabs .nav-pills:not(.nav-pills-icons) > li > a {
+  border-radius: 6px; }
+
+.vue-tabs .nav-pills.nav-stacked > li + li {
+  margin: 10px 0; }
+
+.vue-tabs .tab-content {
+  padding-left: 20px;
+  padding-top: 10px; }

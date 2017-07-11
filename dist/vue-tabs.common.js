@@ -135,7 +135,7 @@ var VueTabs = {
                 [title]
             );
 
-            if (tab.$slots.title && position === 'center') return tab.$slots.title;
+            if (tab.$slots.title) return tab.$slots.title;
             return simpleTitle;
         },
         renderIcon: function renderIcon(index) {
@@ -191,8 +191,9 @@ var VueTabs = {
                                 }
                             },
 
-                            style: active ? _this.activeTabStyle : {} },
-                        [!tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
+                            style: active ? _this.activeTabStyle : {},
+                            'class': { 'active_tab': active } },
+                        [_this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
             });
@@ -206,13 +207,21 @@ var VueTabs = {
             'div',
             { 'class': ['vue-tabs', this.stackedClass] },
             [h(
-                'ul',
-                { 'class': this.classList, attrs: { role: 'tablist' }
-                },
-                [tabList]
+                'div',
+                { 'class': [{ 'nav-tabs-navigation': !this.isStacked }, { 'left-vertical-tabs': this.isStacked }] },
+                [h(
+                    'div',
+                    { 'class': ['nav-tabs-wrapper', this.stackedClass] },
+                    [h(
+                        'ul',
+                        { 'class': this.classList, attrs: { role: 'tablist' }
+                        },
+                        [tabList]
+                    )]
+                )]
             ), h(
                 'div',
-                { 'class': 'tab-content' },
+                { 'class': ['tab-content', { 'right-text-tabs': this.isStacked }] },
                 [this.$slots.default]
             )]
         );
