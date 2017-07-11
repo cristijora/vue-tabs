@@ -2,10 +2,16 @@
 Simplified, customizable bootstrap based tabs
 Vue-tabs is a tab component which simplifies the usage of tabs and their customization
 ## Demos
-* [Basic demo](https://jsfiddle.net/CristiJ/b44cc4dq/22/)
-* [Icons and colors](https://jsfiddle.net/CristiJ/b44cc4dq/26/)
-* [Full width centered tabs with text bellow](https://jsfiddle.net/CristiJ/b44cc4dq/29/)
-* [Vertical tabs](https://jsfiddle.net/CristiJ/b44cc4dq/32/)
+* [Basic demo](https://jsfiddle.net/b44cc4dq/187/)
+* [Icons and colors](https://jsfiddle.net/b44cc4dq/188/)
+* [Full width centered tabs with text bellow](https://jsfiddle.net/b44cc4dq/189/)
+* [Vertical tabs](https://jsfiddle.net/b44cc4dq/190/)
+
+# Theming
+Vue-tabs supports 3 different themes by default:
+* [Default (bootstrap)](https://jsfiddle.net/CristiJ/b44cc4dq/22/)
+* [Paper](https://jsfiddle.net/b44cc4dq/191/)
+* [Material](https://jsfiddle.net/b44cc4dq/198/)
 
 ## [Documentation](https://cristijora.github.io/vue-tabs/#/)
 
