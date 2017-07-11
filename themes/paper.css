@@ -23,7 +23,8 @@
       display: block;
       padding: 10px 15px; }
       .vue-tabs .nav > li > a:hover, .vue-tabs .nav > li > a:focus {
-        text-decoration: none; }
+        text-decoration: none;
+        background-color: #eeeeee; }
     .vue-tabs .nav > li span.title {
       display: flex;
       justify-content: center; }
@@ -146,7 +147,8 @@
     border: 0 none !important;
     color: #A49E93; }
   .vue-tabs .nav-tabs > li > a:hover {
-    color: #66615b; }
+    color: #66615b;
+    background-color: transparent; }
   .vue-tabs .nav-tabs > li.active {
     color: #66615b;
     position: relative; }
@@ -155,7 +157,7 @@
     .vue-tabs .nav-tabs > li.active > a:focus {
       background-color: transparent;
       border: 0 none; }
-    .vue-tabs .nav-tabs > li.active :after {
+    .vue-tabs .nav-tabs > li.active :not(i):after {
       border-bottom: 11px solid #FFFFFF;
       border-left: 11px solid transparent;
       border-right: 11px solid transparent;
@@ -164,7 +166,7 @@
       position: absolute;
       right: calc(50% - 11px);
       bottom: 0; }
-    .vue-tabs .nav-tabs > li.active :before {
+    .vue-tabs .nav-tabs > li.active :not(i):before {
       border-bottom: 11px solid #F1EAE0;
       border-left: 11px solid transparent;
       border-right: 11px solid transparent;

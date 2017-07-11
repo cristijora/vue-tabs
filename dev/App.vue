@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-tabs class="card" @on-error="handleError" type="pills" v-model="tabName">
+    <vue-tabs class="card" @on-error="handleError" centered v-model="tabName">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -13,7 +13,6 @@
              :title="re.name"
              icon="ti-user">
         {{re.name}}
-        <div slot="title">Hey {{re.name}} </div>
       </v-tab>
     </vue-tabs>
     <button @click="reList.push({name:'test'})">Add more!</button>
@@ -42,10 +41,10 @@
   }
 </script>
 <style lang="scss">
-  .vue-tabs .active_tab{
+  /*.vue-tabs .active_tab{
     background-color: #4caf50 !important;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(#4caf50, 0.4) !important;
-  }
+  }*/
   $border-radius-extreme: 6px !default;
   $white-color: white;
   $gray-input-bg: #F3F2EE !default;
@@ -70,8 +69,6 @@
     position: relative;
     z-index: 1;
   }
-
-
 
   .list-complete-item {
     transition: all 1s;

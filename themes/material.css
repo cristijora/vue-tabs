@@ -23,7 +23,8 @@
       display: block;
       padding: 10px 15px; }
       .vue-tabs .nav > li > a:hover, .vue-tabs .nav > li > a:focus {
-        text-decoration: none; }
+        text-decoration: none;
+        background-color: #eeeeee; }
     .vue-tabs .nav > li span.title {
       display: flex;
       justify-content: center; }

@@ -27,7 +27,7 @@ $medium-pale-bg:             #F1EAE0 !default;
     position: relative;
     width: 100%;
   }
-  .nav-tabs {
+  .nav-tabs{
     border-bottom: 0 none;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
@@ -38,6 +38,7 @@ $medium-pale-bg:             #F1EAE0 !default;
       }
       > a:hover{
         color: $font-color;
+        background-color: transparent;
       }
     }
 
@@ -53,7 +54,7 @@ $medium-pale-bg:             #F1EAE0 !default;
         //height: 50px;
       }
 
-      :after{
+      :not(i):after{
         border-bottom: 11px solid $white-color;
         border-left: 11px solid rgba(0, 0, 0, 0);
         border-right: 11px solid rgba(0, 0, 0, 0);
@@ -64,7 +65,7 @@ $medium-pale-bg:             #F1EAE0 !default;
         bottom: 0;
       }
 
-      :before{
+      :not(i):before{
         border-bottom: 11px solid $medium-pale-bg;
         border-left: 11px solid rgba(0, 0, 0, 0);
         border-right: 11px solid rgba(0, 0, 0, 0);
