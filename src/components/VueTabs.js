@@ -122,7 +122,7 @@ export default{
             let tab = this.tabs[index]
             let {icon} = tab
             let simpleIcon = <i class={icon}></i>
-            if (!tab.$slots.title) return simpleIcon
+            if (!tab.$slots.title && icon) return simpleIcon
         },
         renderTabs () {
             return this.tabs.map((tab, index) => {

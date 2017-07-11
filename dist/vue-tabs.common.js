@@ -150,7 +150,7 @@ var VueTabs = {
                 { 'class': icon },
                 []
             );
-            if (!tab.$slots.title) return simpleIcon;
+            if (!tab.$slots.title && icon) return simpleIcon;
         },
         renderTabs: function renderTabs() {
             var _this = this;
