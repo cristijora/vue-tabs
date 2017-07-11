@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.3.1
+ * vue-nav-tabs v0.5.0
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -80,10 +80,12 @@ var VueTabs = {
         },
         changeTab: function changeTab(oldIndex, newIndex, route) {
             this.activeTabIndex = newIndex;
-            this.tabs[oldIndex].active = false;
-            this.tabs[newIndex].active = true;
+            var oldTab = this.tabs[oldIndex];
+            var newTab = this.tabs[newIndex];
+            oldTab.active = false;
+            newTab.active = true;
             this.$emit('input', this.tabs[newIndex].title);
-            this.$emit('tab-change', oldIndex, newIndex);
+            this.$emit('tab-change', newIndex, newTab, oldTab);
             this.tryChangeRoute(route);
         },
         tryChangeRoute: function tryChangeRoute(route) {

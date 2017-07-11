@@ -68,10 +68,12 @@ export default{
         },
         changeTab (oldIndex, newIndex, route) {
             this.activeTabIndex = newIndex
-            this.tabs[oldIndex].active = false
-            this.tabs[newIndex].active = true
+            let oldTab = this.tabs[oldIndex]
+            let newTab = this.tabs[newIndex]
+            oldTab.active =false
+            newTab.active = true
             this.$emit('input', this.tabs[newIndex].title)
-            this.$emit('tab-change', oldIndex, newIndex)
+            this.$emit('tab-change', newIndex, newTab, oldTab)
             this.tryChangeRoute(route)
         },
         tryChangeRoute (route) {
