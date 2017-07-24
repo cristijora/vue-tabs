@@ -1,7 +1,7 @@
 <template>
   <div>
     <vue-tabs class="card" @on-error="handleError"
-              v-model="tabName">
+              v-model="tabNameCurrent" :tabsValue="tabNameNew">
       <!--<template slot="tab" scope="props">
         <li :class="{active:props.tab.active}" >
           <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
@@ -18,6 +18,7 @@
     </vue-tabs>
     <button @click="reList.push({name:'test'})">Add more!</button>
     <button @click="reList.splice(0,1)">Remove first</button>
+  <label>Tab index or name <input type="text" v-model="tabNameNew"></label>
   </div>
 </template>
 
@@ -28,7 +29,8 @@
     data(){
       return {
         reList : [],
-        tabName: 'name2'
+        tabNameCurrent: 'name1',
+        tabNameNew: 'name1',
       }
     },
     methods: {
