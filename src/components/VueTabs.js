@@ -25,7 +25,7 @@ export default{
          * Centers the tabs and makes the container div full width
          */
         centered: Boolean,
-        value: [String, Number, Object]
+        tabsValue: [String, Number, Object]
     },
     data () {
         return {
@@ -98,12 +98,17 @@ export default{
             }
             return []
         },
-        findTabAndActivate (tabName) {
-            let indexToActivate = this.tabs.findIndex(tab => tab.title === tabName)
+        findTabAndActivate (tabNameOrIndex) {
+            let indexToActivate = this.tabs.findIndex(tab => tab.title === tabNameOrIndex)
             if (indexToActivate != -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate)
             } else {
-                this.changeTab(this.activeTabIndex, 0)
+                tabNameOrIndex = Number.parseInt(tabNameOrIndex);
+                if (Number.isInteger(tabNameOrIndex) && tabNameOrIndex >= 0 && tabNameOrIndex < this.tabs.length) {
+                    this.changeTab(this.activeTabIndex, tabNameOrIndex)
+                } else {
+                    this.changeTab(this.activeTabIndex, 0)
+                }
             }
         },
         renderTabTitle (index, position = 'top') {
@@ -176,15 +181,15 @@ export default{
     },
     watch: {
         tabs: function (newList) {
-            if (newList.length > 0 && !this.value) {
+            if (newList.length > 0 && !this.tabsValue) {
                 this.activateTab(this.activeTabIndex)
             }
-            if (newList.length > 0 && this.value) {
-                this.findTabAndActivate(this.value)
+            if (newList.length > 0 && this.tabsValue) {
+                this.findTabAndActivate(this.tabsValue)
             }
+        },
+        tabsValue: function (newVal) {
+            this.findTabAndActivate(newVal)
         }
-    },
-    value: function (newVal) {
-        this.findTabAndActivate(newVal)
     }
 }
