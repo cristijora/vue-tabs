@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.0
+ * vue-nav-tabs v0.5.1
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
