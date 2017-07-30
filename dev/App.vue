@@ -2,22 +2,16 @@
   <div>
     <vue-tabs class="card" @on-error="handleError"
               v-model="tabName">
-      <!--<template slot="tab" scope="props">
-        <li :class="{active:props.tab.active}" >
-          <a href="" @click.prevent="props.clickHandler(props.index)" style="border-radius:50%">
-           {{props.tab.title}}
-          </a>
-        </li>
-      </template>-->
-      <v-tab v-for="(re, index) in reList"
-             :key="re.name"
-             :title="re.name"
+      <v-tab v-for="(tab, index) in tabList"
+             :key="tab.name"
+             :title="tab.name"
              icon="ti-user">
-        {{re.name}}
+        {{tab.name}}
       </v-tab>
     </vue-tabs>
-    <button @click="reList.push({name:'test'})">Add more!</button>
-    <button @click="reList.splice(0,1)">Remove first</button>
+    <button @click="tabList.push({name:'test'})">Add more!</button>
+    <button @click="tabList.splice(0,1)">Remove first</button>
+    <button @click="goToSecondTab">Go to second tab</button>
   </div>
 </template>
 
@@ -27,17 +21,17 @@
     name: 'app',
     data(){
       return {
-        reList : [],
-        tabName: 'name2'
+        tabList : [{name:'name1'},{name:'name2'},{name:'name3'}],
+        tabName: 'name1'
       }
     },
     methods: {
       handleError(error){
         this.error = error
+      },
+      goToSecondTab(){
+          this.tabName='name2'
       }
-    },
-    mounted () {
-      this.reList = [{name:'name1'},{name:'name2'},{name:'name3'}]
     }
   }
 </script>

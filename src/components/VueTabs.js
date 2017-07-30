@@ -98,8 +98,8 @@ export default{
             }
             return []
         },
-        findTabAndActivate (tabName) {
-            let indexToActivate = this.tabs.findIndex(tab => tab.title === tabName)
+        findTabAndActivate (tabNameOrIndex) {
+            let indexToActivate = this.tabs.findIndex((tab, index) => tab.title === tabNameOrIndex || index === tabNameOrIndex)
             if (indexToActivate != -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate)
             } else {
@@ -175,16 +175,16 @@ export default{
             </div>)
     },
     watch: {
-        tabs: function (newList) {
+        tabs (newList) {
             if (newList.length > 0 && !this.value) {
                 this.activateTab(this.activeTabIndex)
             }
             if (newList.length > 0 && this.value) {
                 this.findTabAndActivate(this.value)
             }
+        },
+        value (newVal) {
+            this.findTabAndActivate(newVal)
         }
-    },
-    value: function (newVal) {
-        this.findTabAndActivate(newVal)
     }
 }

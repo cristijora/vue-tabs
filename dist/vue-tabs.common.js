@@ -110,9 +110,9 @@ var VueTabs = {
             }
             return [];
         },
-        findTabAndActivate: function findTabAndActivate(tabName) {
-            var indexToActivate = this.tabs.findIndex(function (tab) {
-                return tab.title === tabName;
+        findTabAndActivate: function findTabAndActivate(tabNameOrIndex) {
+            var indexToActivate = this.tabs.findIndex(function (tab, index) {
+                return tab.title === tabNameOrIndex || index === tabNameOrIndex;
             });
             if (indexToActivate != -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate);
@@ -237,10 +237,10 @@ var VueTabs = {
             if (newList.length > 0 && this.value) {
                 this.findTabAndActivate(this.value);
             }
+        },
+        value: function value(newVal) {
+            this.findTabAndActivate(newVal);
         }
-    },
-    value: function value(newVal) {
-        this.findTabAndActivate(newVal);
     }
 };
 
