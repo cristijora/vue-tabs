@@ -7,6 +7,7 @@ Vue-tabs is a tab component which simplifies the usage of tabs and their customi
 * [Full width centered tabs with text bellow](https://jsfiddle.net/b44cc4dq/189/)
 * [Vertical tabs](https://jsfiddle.net/b44cc4dq/190/)
 * [Close or add tabs dynamically](https://jsfiddle.net/b44cc4dq/245/)
+* [Change tabs programatically](https://jsfiddle.net/b44cc4dq/275/)
 
 # Theming
 Vue-tabs supports 3 different themes by default:
