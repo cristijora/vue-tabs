@@ -4,8 +4,7 @@
               v-model="tabName">
       <v-tab v-for="(tab, index) in tabList"
              :key="tab.name"
-             :title="tab.name"
-             icon="ti-user">
+             :title="tab.name">
         {{tab.name}}
       </v-tab>
     </vue-tabs>

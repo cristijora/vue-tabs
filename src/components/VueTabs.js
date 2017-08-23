@@ -113,7 +113,7 @@ export default{
             let titleStyles = {color: this.activeTabColor}
             if (position === 'center') titleStyles.color = this.activeTextColor
             let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
-                                        {position === 'center' && this.renderIcon(index)}&nbsp;{title}
+                                        {position === 'center' && this.renderIcon(index)}{title}
                                   </span> )
 
             if (tab.$slots.title) return tab.$slots.title
@@ -123,7 +123,7 @@ export default{
             if (this.tabs.length === 0) return
             let tab = this.tabs[index]
             let {icon} = tab
-            let simpleIcon = <i class={icon}></i>
+            let simpleIcon = <i class={icon}>&nbsp;</i>
             if (!tab.$slots.title && icon) return simpleIcon
         },
         renderTabs () {
