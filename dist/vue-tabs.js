@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.1
+ * vue-nav-tabs v0.5.2
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -136,7 +136,7 @@ var VueTabs = {
             var simpleTitle = h(
                 'span',
                 { 'class': 'title title_' + position, style: active ? titleStyles : {} },
-                [position === 'center' && this.renderIcon(index), '\xA0', title]
+                [position === 'center' && this.renderIcon(index), title]
             );
 
             if (tab.$slots.title) return tab.$slots.title;
@@ -152,7 +152,7 @@ var VueTabs = {
             var simpleIcon = h(
                 'i',
                 { 'class': icon },
-                []
+                ['\xA0']
             );
             if (!tab.$slots.title && icon) return simpleIcon;
         },
