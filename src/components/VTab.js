@@ -20,6 +20,7 @@ export default{
         route: {
             type: [String, Object]
         },
+        disabled: Boolean,
         transitionName: String,
         transitionMode: String
     },

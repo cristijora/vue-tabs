@@ -38,16 +38,19 @@ $title-color: #f3f2ee;
       }
 
       // Disabled state sets text to gray and nukes hover/tab effects
-      &.disabled > a {
-        color: $nav-disabled-link-color;
-
-        &:hover,
-        &:focus {
-          color: $nav-disabled-link-hover-color;
-          text-decoration: none;
-          background-color: transparent;
-          cursor: $cursor-disabled;
+      &.disabled  {
+        > a{
+          color: $nav-disabled-link-color;
+          &:hover,
+          &:focus {
+            color: $nav-disabled-link-hover-color;
+            text-decoration: none;
+            cursor: $cursor-disabled;
+            background-color: transparent;
+            border-color: transparent;
+          }
         }
+
       }
     }
 

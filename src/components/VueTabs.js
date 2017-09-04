@@ -1,8 +1,10 @@
-export default{
+export default {
     name: 'vue-tabs',
     props: {
         activeTabColor: String,
         activeTextColor: String,
+        disabledColor: String,
+        disabledTextColor: String,
         /**
          * Tab title position: center | bottom | top
          */
@@ -67,10 +69,11 @@ export default{
             this.$emit('input', tab.title)
         },
         changeTab (oldIndex, newIndex, route) {
-            this.activeTabIndex = newIndex
             let oldTab = this.tabs[oldIndex]
             let newTab = this.tabs[newIndex]
-            oldTab.active =false
+            if (newTab.disabled) return;
+            this.activeTabIndex = newIndex
+            oldTab.active = false
             newTab.active = true
             this.$emit('input', this.tabs[newIndex].title)
             this.$emit('tab-change', newIndex, newTab, oldTab)
@@ -81,11 +84,11 @@ export default{
                 this.$router.push(route)
             }
         },
-        addTab(item) {
+        addTab (item) {
             const index = this.$slots.default.indexOf(item.$vnode);
             this.tabs.splice(index, 0, item);
         },
-        removeTab(item) {
+        removeTab (item) {
             const tabs = this.tabs;
             const index = tabs.indexOf(item);
             if (index > -1) {
@@ -127,27 +130,37 @@ export default{
             let simpleIcon = <i class={icon}>&nbsp;</i>
             if (!tab.$slots.title && icon) return simpleIcon
         },
+        tabStyles (tab) {
+            if (tab.disabled) {
+                return {
+                    backgroundColor: this.disabledColor,
+                    color: this.disabledTextColor
+                }
+            }
+            return {}
+        },
         renderTabs () {
             return this.tabs.map((tab, index) => {
                 if (!tab) return
                 let {route, id, title, icon} = tab
                 let active = this.activeTabIndex === index
                 return (
-                    <li name="tab" onClick={() => this.navigateToTab(index, route)} class={['tab', {active: active}]}
+                    <li name="tab" onClick={() => !tab.disabled && this.navigateToTab(index, route)}
+                        class={['tab', {active: active}, {disabled: tab.disabled}]}
                         key={title}
                         role="presentation">
                         {this.textPosition === 'top' &&
                         this.renderTabTitle(index, this.textPosition)
                         }
                         <a href="javascript:void(0)"
-                           style={active ? this.activeTabStyle : {}}
+                           style={active ? this.activeTabStyle : this.tabStyles(tab)}
                            class={{'active_tab': active}}
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">
-                            {this.textPosition !=='center' && !tab.$slots.title && this.renderIcon(index)}
+                            {this.textPosition !== 'center' && !tab.$slots.title && this.renderIcon(index)}
                             {this.textPosition === 'center' &&
-                              this.renderTabTitle(index, this.textPosition)
+                            this.renderTabTitle(index, this.textPosition)
                             }
                         </a>
                         {this.textPosition === 'bottom' &&
@@ -161,15 +174,15 @@ export default{
     render () {
         const tabList = this.renderTabs()
         return (
-            <div class={['vue-tabs',this.stackedClass ]}>
-                <div class={[{'nav-tabs-navigation': !this.isStacked}, {'left-vertical-tabs': this.isStacked }]}>
+            <div class={['vue-tabs', this.stackedClass]}>
+                <div class={[{'nav-tabs-navigation': !this.isStacked}, {'left-vertical-tabs': this.isStacked}]}>
                     <div class={['nav-tabs-wrapper', this.stackedClass]}>
                         <ul class={this.classList} role="tablist">
                             {tabList}
                         </ul>
                     </div>
                 </div>
-                <div class={['tab-content',{'right-text-tabs': this.isStacked } ]}>
+                <div class={['tab-content', {'right-text-tabs': this.isStacked}]}>
                     {this.$slots.default}
                 </div>
             </div>)
