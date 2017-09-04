@@ -1,11 +1,19 @@
 <template>
   <div>
     <vue-tabs class="card"
+              active-tab-color="#e74c3c"
+              active-text-color="white"
+              disabled-color="lightgrey"
+              disabled-text-color="grey"
+              centered
+              type="pills"
               @tab-change="handleTabChange"
               @on-error="handleError"
               v-model="tabName">
+      <div slot={}></div>
       <v-tab v-for="(tab, index) in tabList"
              :key="tab.name"
+             :disabled="tab.disabled"
              :title="tab.name">
         {{tab.name}}
       </v-tab>
@@ -22,7 +30,7 @@
     name: 'app',
     data(){
       return {
-        tabList : [{name:'name1'},{name:'name2'},{name:'name3'}],
+        tabList : [{name:'name1'},{name:'name2', disabled: true},{name:'name3'}],
         tabName: 'name1'
       }
     },
