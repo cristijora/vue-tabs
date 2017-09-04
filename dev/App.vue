@@ -1,6 +1,8 @@
 <template>
   <div>
-    <vue-tabs class="card" @on-error="handleError"
+    <vue-tabs class="card"
+              @tab-change="handleTabChange"
+              @on-error="handleError"
               v-model="tabName">
       <v-tab v-for="(tab, index) in tabList"
              :key="tab.name"
@@ -27,6 +29,9 @@
     methods: {
       handleError(error){
         this.error = error
+      },
+      handleTabChange(tabIndex, newTab, oldTab){
+          console.log(tabIndex, newTab.title, oldTab.title)
       },
       goToSecondTab(){
           this.tabName='name2'

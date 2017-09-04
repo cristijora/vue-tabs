@@ -100,7 +100,8 @@ export default{
         },
         findTabAndActivate (tabNameOrIndex) {
             let indexToActivate = this.tabs.findIndex((tab, index) => tab.title === tabNameOrIndex || index === tabNameOrIndex)
-            if (indexToActivate != -1) {
+            if (indexToActivate === this.activeTabIndex) return
+            if (indexToActivate !== -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate)
             } else {
                 this.changeTab(this.activeTabIndex, 0)
@@ -139,7 +140,6 @@ export default{
                         this.renderTabTitle(index, this.textPosition)
                         }
                         <a href="javascript:void(0)"
-                           onClick={() => this.navigateToTab(index)}
                            style={active ? this.activeTabStyle : {}}
                            class={{'active_tab': active}}
                            aria-selected={active}
