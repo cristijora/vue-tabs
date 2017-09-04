@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.2
+ * vue-nav-tabs v0.5.3
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -114,7 +114,8 @@ var VueTabs = {
             var indexToActivate = this.tabs.findIndex(function (tab, index) {
                 return tab.title === tabNameOrIndex || index === tabNameOrIndex;
             });
-            if (indexToActivate != -1) {
+            if (indexToActivate === this.activeTabIndex) return;
+            if (indexToActivate !== -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate);
             } else {
                 this.changeTab(this.activeTabIndex, 0);
@@ -187,12 +188,6 @@ var VueTabs = {
                                 'aria-selected': active,
                                 'aria-controls': '#' + id,
                                 role: 'tab' },
-                            on: {
-                                'click': function click() {
-                                    return _this.navigateToTab(index);
-                                }
-                            },
-
                             style: active ? _this.activeTabStyle : {},
                             'class': { 'active_tab': active } },
                         [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
