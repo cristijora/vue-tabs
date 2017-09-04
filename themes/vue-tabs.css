@@ -33,8 +33,9 @@
       .vue-tabs .nav > li.disabled > a:hover, .vue-tabs .nav > li.disabled > a:focus {
         color: #777777;
         text-decoration: none;
+        cursor: not-allowed;
         background-color: transparent;
-        cursor: not-allowed; }
+        border-color: transparent; }
   .vue-tabs .nav .nav-divider {
     height: 1px;
     margin: 9px 0;

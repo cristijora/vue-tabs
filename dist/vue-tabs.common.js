@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.3
+ * vue-nav-tabs v0.5.4
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -12,6 +12,8 @@ var VueTabs = {
     props: {
         activeTabColor: String,
         activeTextColor: String,
+        disabledColor: String,
+        disabledTextColor: String,
         /**
          * Tab title position: center | bottom | top
          */
@@ -77,9 +79,10 @@ var VueTabs = {
             this.$emit('input', tab.title);
         },
         changeTab: function changeTab(oldIndex, newIndex, route) {
-            this.activeTabIndex = newIndex;
             var oldTab = this.tabs[oldIndex];
             var newTab = this.tabs[newIndex];
+            if (newTab.disabled) return;
+            this.activeTabIndex = newIndex;
             oldTab.active = false;
             newTab.active = true;
             this.$emit('input', this.tabs[newIndex].title);
@@ -155,6 +158,15 @@ var VueTabs = {
             );
             if (!tab.$slots.title && icon) return simpleIcon;
         },
+        tabStyles: function tabStyles(tab) {
+            if (tab.disabled) {
+                return {
+                    backgroundColor: this.disabledColor,
+                    color: this.disabledTextColor
+                };
+            }
+            return {};
+        },
         renderTabs: function renderTabs() {
             var _this = this;
 
@@ -175,10 +187,11 @@ var VueTabs = {
                             role: 'presentation' },
                         on: {
                             'click': function click() {
-                                return _this.navigateToTab(index, route);
+                                return !tab.disabled && _this.navigateToTab(index, route);
                             }
                         },
-                        'class': ['tab', { active: active }],
+
+                        'class': ['tab', { active: active }, { disabled: tab.disabled }],
                         key: title },
                     [_this.textPosition === 'top' && _this.renderTabTitle(index, _this.textPosition), h(
                         'a',
@@ -188,7 +201,7 @@ var VueTabs = {
                                 'aria-selected': active,
                                 'aria-controls': '#' + id,
                                 role: 'tab' },
-                            style: active ? _this.activeTabStyle : {},
+                            style: active ? _this.activeTabStyle : _this.tabStyles(tab),
                             'class': { 'active_tab': active } },
                         [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
@@ -261,6 +274,7 @@ var VTab = {
         route: {
             type: [String, Object]
         },
+        disabled: Boolean,
         transitionName: String,
         transitionMode: String
     },
