@@ -254,6 +254,8 @@ var VueTabs = {
     }
 };
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var VTab = {
     name: 'v-tab',
     props: {
@@ -272,6 +274,7 @@ var VTab = {
         beforeChange: {
             type: Function
         },
+        aniimateInClass: String,
         id: String,
         route: {
             type: [String, Object]
@@ -304,17 +307,18 @@ var VTab = {
         this.$parent.removeTab(this);
     },
     render: function render() {
+        var _h;
+
         var h = arguments[0];
 
         return h(
             'section',
-            { 'class': 'tab-container',
-                attrs: { role: 'tabpanel' },
-                directives: [{
-                    name: 'show',
-                    value: this.active
-                }]
-            },
+            (_h = { 'class': 'tab-container',
+                attrs: { role: 'tabpanel' }
+            }, _defineProperty(_h, 'class', _defineProperty({}, this.aniimateInClass, this.active)), _defineProperty(_h, 'directives', [{
+                name: 'show',
+                value: this.active
+            }]), _h),
             [this.$slots.default]
         );
     }
