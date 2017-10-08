@@ -16,7 +16,6 @@ yarn add --dev vue-nav-tabs`
 ```
 
 ## Direct script include
-Download the css and js files from `dist` folder or reference them directly from github (check jsfiddle links)
 ```html
 <link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
 <script src="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.js"></script>
