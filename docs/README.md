@@ -12,7 +12,7 @@ Vue-tabs is a tab component which simplifies the usage of tabs and their customi
 ## NPM
 ```
 npm install --save vue-nav-tabs
-yarn add --dev vue-nav-tabs`
+yarn add --dev vue-nav-tabs
 ```
 
 ## Direct script include
