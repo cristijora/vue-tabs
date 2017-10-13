@@ -9,10 +9,10 @@ Vue-tabs is a tab component which simplifies the usage of tabs and their customi
 * [Close or add tabs dynamically](https://jsfiddle.net/b44cc4dq/245/)
 * [Change tabs programatically](https://jsfiddle.net/b44cc4dq/275/)
 
-## NPM
+## NPM/YARN
 ```
-npm install --save vue-nav-tabs
-yarn add --dev vue-nav-tabs
+npm install --save vue-nav-tabs 
+yarn add vue-nav-tabs 
 ```
 
 ## Direct script include
