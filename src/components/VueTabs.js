@@ -190,7 +190,11 @@ export default {
     watch: {
         tabs (newList) {
             if (newList.length > 0 && !this.value) {
-                this.activateTab(this.activeTabIndex)
+                if (newList.length <= this.activeTabIndex) {
+                    this.activateTab(this.activeTabIndex - 1);
+                } else {
+                    this.activateTab(this.activeTabIndex);
+                }
             }
             if (newList.length > 0 && this.value) {
                 this.findTabAndActivate(this.value)
