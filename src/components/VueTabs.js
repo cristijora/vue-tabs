@@ -154,7 +154,7 @@ export default {
                         }
                         <a href="javascript:void(0)"
                            style={active ? this.activeTabStyle : this.tabStyles(tab)}
-                           class={{'active_tab': active}}
+                           class={[{'active_tab': active}, 'tabs__link']}
                            aria-selected={active}
                            aria-controls={`#${id}`}
                            role="tab">

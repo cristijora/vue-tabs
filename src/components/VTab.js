@@ -1,4 +1,4 @@
-export default{
+export default {
     name: 'v-tab',
     props: {
         title: {
@@ -38,19 +38,20 @@ export default{
             validationError: null
         }
     },
-    mounted(){
-      this.$parent.addTab(this)
+    mounted () {
+        this.$parent.addTab(this)
     },
-    destroyed() {
+    destroyed () {
         if (this.$el && this.$el.parentNode) {
             this.$el.parentNode.removeChild(this.$el);
         }
         this.$parent.removeTab(this);
     },
     render () {
-        return ( <section class="tab-container"
-                          role="tabpanel" v-show={this.active}>
-            {this.$slots.default}
-        </section>)
+        return (
+            <section class="tab-container"
+                     role="tabpanel" v-show={this.active}>
+                {this.$slots.default}
+            </section>)
     }
 }
