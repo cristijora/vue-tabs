@@ -32,17 +32,18 @@
   "dependencies": {},
   "devDependencies": {
     "babel-preset-stage-2": "^6.24.1",
-    "bili": "^0.16.0-rc.2",
+    "bili": "^0.18.2",
     "bootstrap": "^3.3.7",
     "eslint-config-rem": "^3.0.0",
     "gh-pages": "^1.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.6.0",
     "poi": "^9.1.0",
     "rollup-plugin-babel": "^2.7.1",
     "sass-loader": "^6.0.6",
-    "vue": "^2.3.4",
+    "vue": "^2.5.3",
     "vue-github-badge": "^1.0.0",
-    "vue-router": "^2.7.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.3",
     "xo": "^0.18.0"
   },
   "xo": {
