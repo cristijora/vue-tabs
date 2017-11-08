@@ -152,7 +152,7 @@ export default {
                         {this.textPosition === 'top' &&
                         this.renderTabTitle(index, this.textPosition)
                         }
-                        <a href="javascript:void(0)"
+                        <a href="#"
                            style={active ? this.activeTabStyle : this.tabStyles(tab)}
                            class={{'active_tab': active}}
                            aria-selected={active}
