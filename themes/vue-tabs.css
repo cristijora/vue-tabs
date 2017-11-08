@@ -1,10 +1,6 @@
 .vue-tabs.stacked {
   display: flex; }
 
-.vue-tabs a {
-  text-decoration: none;
-  color: gray; }
-
 .vue-tabs .nav {
   margin-bottom: 0;
   margin-top: 0;
