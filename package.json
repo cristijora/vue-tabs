@@ -22,7 +22,7 @@
     "prepublish": "npm run build",
     "lint": "xo",
     "build:css": "node-sass themes/ -o themes/ && node-sass themes/vue-tabs.scss dist/vue-tabs.min.css --output-style compressed",
-    "build": "bili --name Vue-Tabs --format cjs --format umd --compress --banner --js babel && npm run build:css",
+    "build": "bili --filename vue-tabs --format cjs --format umd --compress --banner --js babel && npm run build:css",
     "build:example": "poi build",
     "dev": "poi --port 5000",
     "deploy": "npm run build:example && gh-pages -d example/dist"
