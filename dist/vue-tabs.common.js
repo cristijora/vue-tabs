@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.4
+ * vue-nav-tabs v0.5.5
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -176,8 +176,7 @@ var VueTabs = {
                 if (!tab) return;
                 var route = tab.route,
                     id = tab.id,
-                    title = tab.title,
-                    icon = tab.icon;
+                    title = tab.title;
 
                 var active = _this.activeTabIndex === index;
                 return h(
@@ -196,13 +195,13 @@ var VueTabs = {
                     [_this.textPosition === 'top' && _this.renderTabTitle(index, _this.textPosition), h(
                         'a',
                         {
-                            attrs: { href: 'javascript:void(0)',
+                            attrs: { href: '#',
 
                                 'aria-selected': active,
                                 'aria-controls': '#' + id,
                                 role: 'tab' },
                             style: active ? _this.activeTabStyle : _this.tabStyles(tab),
-                            'class': { 'active_tab': active } },
+                            'class': [{ 'active_tab': active }, 'tabs__link'] },
                         [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
@@ -240,7 +239,11 @@ var VueTabs = {
     watch: {
         tabs: function tabs(newList) {
             if (newList.length > 0 && !this.value) {
-                this.activateTab(this.activeTabIndex);
+                if (newList.length <= this.activeTabIndex) {
+                    this.activateTab(this.activeTabIndex - 1);
+                } else {
+                    this.activateTab(this.activeTabIndex);
+                }
             }
             if (newList.length > 0 && this.value) {
                 this.findTabAndActivate(this.value);

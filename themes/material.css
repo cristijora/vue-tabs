@@ -1,7 +1,7 @@
 .vue-tabs.stacked {
   display: flex; }
 
-.vue-tabs a {
+.vue-tabs .tabs__link {
   text-decoration: none;
   color: gray; }
 
