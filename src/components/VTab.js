@@ -16,6 +16,7 @@ export default{
         beforeChange: {
             type: Function
         },
+        aniimateInClass: String,
         id: String,
         route: {
             type: [String, Object]
@@ -49,7 +50,7 @@ export default{
     },
     render () {
         return ( <section class="tab-container"
-                          role="tabpanel" v-show={this.active}>
+                          role="tabpanel" class={{[this.aniimateInClass] : this.active}} v-show={this.active}>
             {this.$slots.default}
         </section>)
     }

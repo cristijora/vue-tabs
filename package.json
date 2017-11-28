@@ -29,7 +29,9 @@
   },
   "author": "cristij <joracristi@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "animate.css": "^3.5.2"
+  },
   "devDependencies": {
     "babel-preset-stage-2": "^6.24.1",
     "bili": "^0.16.0-rc.2",
