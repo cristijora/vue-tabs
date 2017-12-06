@@ -195,12 +195,6 @@ var VueTabs = {
                     [_this.textPosition === 'top' && _this.renderTabTitle(index, _this.textPosition), h(
                         'a',
                         {
-                            on: {
-                              'click': function click(event) {
-                                event.preventDefault();
-                                return false;
-                              }
-                            },
                             attrs: { href: '#',
 
                                 'aria-selected': active,
