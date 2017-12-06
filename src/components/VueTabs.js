@@ -153,6 +153,10 @@ export default {
                         this.renderTabTitle(index, this.textPosition)
                         }
                         <a href="#"
+                           onClick={(e) => {
+                             e.preventDefault();
+                             return false;
+                           }}
                            style={active ? this.activeTabStyle : this.tabStyles(tab)}
                            class={[{'active_tab': active}, 'tabs__link']}
                            aria-selected={active}
