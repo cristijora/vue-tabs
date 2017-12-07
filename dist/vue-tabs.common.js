@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.5
+ * vue-nav-tabs v0.5.6
  * (c) 2017-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -176,14 +176,19 @@ var VueTabs = {
                 if (!tab) return;
                 var route = tab.route,
                     id = tab.id,
-                    title = tab.title;
+                    title = tab.title,
+                    icon = tab.icon,
+                    tabId = tab.tabId;
 
                 var active = _this.activeTabIndex === index;
                 return h(
                     'li',
                     {
                         attrs: { name: 'tab',
-                            role: 'presentation' },
+                            id: 't-' + tabId,
+                            'aria-selected': active,
+                            'aria-controls': 'p-' + tabId,
+                            role: 'tab' },
                         on: {
                             'click': function click() {
                                 return !tab.disabled && _this.navigateToTab(index, route);
@@ -197,9 +202,14 @@ var VueTabs = {
                         {
                             attrs: { href: '#',
 
-                                'aria-selected': active,
-                                'aria-controls': '#' + id,
                                 role: 'tab' },
+                            on: {
+                                'click': function click(e) {
+                                    e.preventDefault();
+                                    return false;
+                                }
+                            },
+
                             style: active ? _this.activeTabStyle : _this.tabStyles(tab),
                             'class': [{ 'active_tab': active }, 'tabs__link'] },
                         [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
@@ -287,6 +297,9 @@ var VTab = {
         },
         hash: function hash() {
             return '#' + this.id;
+        },
+        tabId: function tabId() {
+            return this.id ? this.id : this.title;
         }
     },
     data: function data() {
@@ -310,7 +323,9 @@ var VTab = {
         return h(
             'section',
             { 'class': 'tab-container',
-                attrs: { role: 'tabpanel' },
+                attrs: { id: 'p-' + this.tabId,
+                    'aria-labelledby': 't-' + this.tabId,
+                    role: 'tabpanel' },
                 directives: [{
                     name: 'show',
                     value: this.active
