@@ -142,13 +142,16 @@ export default {
         renderTabs () {
             return this.tabs.map((tab, index) => {
                 if (!tab) return
-                let {route, id, title, icon} = tab
+                let {route, id, title, icon, tabId} = tab
                 let active = this.activeTabIndex === index
                 return (
                     <li name="tab" onClick={() => !tab.disabled && this.navigateToTab(index, route)}
                         class={['tab', {active: active}, {disabled: tab.disabled}]}
                         key={title}
-                        role="presentation">
+                        id={`t-${tabId}`}
+                        aria-selected={active}
+                        aria-controls={`p-${tabId}`}
+                        role="tab">
                         {this.textPosition === 'top' &&
                         this.renderTabTitle(index, this.textPosition)
                         }
@@ -159,8 +162,6 @@ export default {
                            }}
                            style={active ? this.activeTabStyle : this.tabStyles(tab)}
                            class={[{'active_tab': active}, 'tabs__link']}
-                           aria-selected={active}
-                           aria-controls={`#${id}`}
                            role="tab">
                             {this.textPosition !== 'center' && !tab.$slots.title && this.renderIcon(index)}
                             {this.textPosition === 'center' &&

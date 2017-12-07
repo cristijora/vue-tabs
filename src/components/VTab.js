@@ -30,6 +30,9 @@ export default {
         },
         hash () {
             return `#${this.id}`
+        },
+        tabId () {
+            return this.id ? this.id : this.title
         }
     },
     data () {
@@ -50,6 +53,8 @@ export default {
     render () {
         return (
             <section class="tab-container"
+                     id={`p-${this.tabId}`}
+                     aria-labelledby={`t-${this.tabId}`}
                      role="tabpanel" v-show={this.active}>
                 {this.$slots.default}
             </section>)
