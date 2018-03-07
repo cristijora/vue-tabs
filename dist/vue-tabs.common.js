@@ -1,11 +1,15 @@
 /*!
  * vue-nav-tabs v0.5.6
- * (c) 2017-present cristij <joracristi@gmail.com>
+ * (c) 2018-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var _mergeJSXProps = _interopDefault(require('babel-helper-vue-jsx-merge-props'));
 
 var VueTabs = {
     name: 'vue-tabs',
@@ -142,6 +146,13 @@ var VueTabs = {
             );
 
             if (tab.$slots.title) return tab.$slots.title;
+            if (tab.$scopedSlots.title) return tab.$scopedSlots.title({
+                active: active,
+                title: title,
+                position: position,
+                icon: tab.icon,
+                data: tab.tabData
+            });
             return simpleTitle;
         },
         renderIcon: function renderIcon(index) {
@@ -183,35 +194,49 @@ var VueTabs = {
                 var active = _this.activeTabIndex === index;
                 return h(
                     'li',
-                    {
+                    _mergeJSXProps([{
                         attrs: { name: 'tab',
                             id: 't-' + tabId,
                             'aria-selected': active,
                             'aria-controls': 'p-' + tabId,
                             role: 'tab' },
-                        on: {
-                            'click': function click() {
-                                return !tab.disabled && _this.navigateToTab(index, route);
-                            }
-                        },
 
                         'class': ['tab', { active: active }, { disabled: tab.disabled }],
-                        key: title },
+                        key: title }, {
+                        on: {
+                            'click': function click($event) {
+                                for (var _len = arguments.length, attrs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                                    attrs[_key - 1] = arguments[_key];
+                                }
+
+                                (function () {
+                                    return !tab.disabled && _this.navigateToTab(index, route);
+                                }).apply(undefined, [$event].concat(attrs));
+                            }
+                        }
+                    }]),
                     [_this.textPosition === 'top' && _this.renderTabTitle(index, _this.textPosition), h(
                         'a',
-                        {
+                        _mergeJSXProps([{
                             attrs: { href: '#',
 
                                 role: 'tab' },
-                            on: {
-                                'click': function click(e) {
-                                    e.preventDefault();
-                                    return false;
-                                }
-                            },
 
                             style: active ? _this.activeTabStyle : _this.tabStyles(tab),
-                            'class': [{ 'active_tab': active }, 'tabs__link'] },
+                            'class': [{ 'active_tab': active }, 'tabs__link'] }, {
+                            on: {
+                                'click': function click($event) {
+                                    for (var _len2 = arguments.length, attrs = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                                        attrs[_key2 - 1] = arguments[_key2];
+                                    }
+
+                                    (function (e) {
+                                        e.preventDefault();
+                                        return false;
+                                    }).apply(undefined, [$event].concat(attrs));
+                                }
+                            }
+                        }]),
                         [_this.textPosition !== 'center' && !tab.$slots.title && _this.renderIcon(index), _this.textPosition === 'center' && _this.renderTabTitle(index, _this.textPosition)]
                     ), _this.textPosition === 'bottom' && _this.renderTabTitle(index, _this.textPosition)]
                 );
@@ -275,6 +300,10 @@ var VTab = {
         icon: {
             type: String,
             default: ''
+        },
+        tabData: {
+            type: Object,
+            default: null
         },
         /***
          * Function to execute before tab switch. Return value must be boolean
