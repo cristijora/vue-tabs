@@ -10,7 +10,6 @@ export default {
             default: ''
         },
         tabData: {
-            type: Object,
             default: null
         },
         /***
