@@ -302,7 +302,6 @@ var VTab = {
             default: ''
         },
         tabData: {
-            type: Object,
             default: null
         },
         /***
