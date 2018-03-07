@@ -116,11 +116,16 @@ export default {
             let {active, title} = tab
             let titleStyles = {color: this.activeTabColor}
             if (position === 'center') titleStyles.color = this.activeTextColor
-            let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>
-                                        {position === 'center' && this.renderIcon(index)}{title}
-                                  </span> )
+            let simpleTitle = (<span class={`title title_${position}`} style={active ? titleStyles : {}}>{position === 'center' && this.renderIcon(index)}{title}</span>)
 
             if (tab.$slots.title) return tab.$slots.title
+            if (tab.$scopedSlots.title) return tab.$scopedSlots.title({
+                active: active,
+                title: title,
+                position: position,
+                icon: tab.icon,
+                data: tab.tabData
+            });
             return simpleTitle
         },
         renderIcon (index) {
