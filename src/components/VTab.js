@@ -9,6 +9,9 @@ export default {
             type: String,
             default: ''
         },
+        tabData: {
+            default: null
+        },
         /***
          * Function to execute before tab switch. Return value must be boolean
          * If the return result is false, tab switch is restricted
