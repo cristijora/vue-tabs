@@ -69,7 +69,7 @@ export default {
             this.$emit('input', tab.title)
         },
         changeTab (oldIndex, newIndex, route) {
-            let oldTab = this.tabs[oldIndex]
+            let oldTab = this.tabs[oldIndex] || {}
             let newTab = this.tabs[newIndex]
             if (newTab.disabled) return;
             this.activeTabIndex = newIndex
