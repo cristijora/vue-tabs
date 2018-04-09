@@ -1,5 +1,5 @@
 /*!
- * vue-nav-tabs v0.5.6
+ * vue-nav-tabs v0.5.7
  * (c) 2018-present cristij <joracristi@gmail.com>
  * Released under the MIT License.
  */
@@ -55,8 +55,8 @@ var babelHelperVueJsxMergeProps = function mergeJSXProps(objs) {
 
 function mergeFn(a, b) {
   return function () {
-    a && a.apply(this, arguments);
-    b && b.apply(this, arguments);
+    a.apply(this, arguments);
+    b.apply(this, arguments);
   };
 }
 
@@ -132,7 +132,7 @@ var VueTabs = {
             this.$emit('input', tab.title);
         },
         changeTab: function changeTab(oldIndex, newIndex, route) {
-            var oldTab = this.tabs[oldIndex];
+            var oldTab = this.tabs[oldIndex] || {};
             var newTab = this.tabs[newIndex];
             if (newTab.disabled) return;
             this.activeTabIndex = newIndex;
