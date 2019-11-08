@@ -204,7 +204,7 @@ export default {
         tabs (newList) {
             if (newList.length > 0 && !this.value) {
                 if (newList.length <= this.activeTabIndex) {
-                    this.activateTab(this.activeTabIndex - 1);
+                    this.activateTab(newList.length - 1);
                 } else {
                     this.activateTab(this.activeTabIndex);
                 }
