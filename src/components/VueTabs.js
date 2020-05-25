@@ -5,12 +5,12 @@ export default {
         activeTextColor: String,
         disabledColor: String,
         disabledTextColor: String,
-        /**
-         * Tab title position: center | bottom | top
-         */
         textPosition: {
             type: String,
-            default: 'center'
+            default: 'center',
+            validator: function (value) {
+                return ['center', 'bottom', 'top'].indexOf(value) !== -1
+            }
         },
         /**
          * Tab type: tabs | pills
