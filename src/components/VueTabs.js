@@ -12,12 +12,12 @@ export default {
             type: String,
             default: 'center'
         },
-        /**
-         * Tab type: tabs | pills
-         */
         type: {
             type: String,
-            default: 'tabs'
+            default: 'tabs',
+            validator: function (value) {
+                return ['tabs', 'pills'].indexOf(value) !== -1
+            }
         },
         direction: {
             type: String,
