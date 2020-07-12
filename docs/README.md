@@ -116,6 +116,7 @@ Event Name | Params
 ------------ | -------------
 tab-change | tabIndex, newTab, oldTab
 input | tabTitle
+tab-added | tabsLength
 
 ### tab-change example
 

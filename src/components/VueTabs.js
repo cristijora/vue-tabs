@@ -87,6 +87,7 @@ export default {
         addTab (item) {
             const index = this.$slots.default.indexOf(item.$vnode);
             this.tabs.splice(index, 0, item);
+            this.$emit('tab-added', this.tabs.length);
         },
         removeTab (item) {
             const tabs = this.tabs;
@@ -104,9 +105,9 @@ export default {
         findTabAndActivate (tabNameOrIndex) {
             let indexToActivate = this.tabs.findIndex((tab, index) => tab.title === tabNameOrIndex || index === tabNameOrIndex)
             // if somehow activeTabIndex is not reflected in the actual vue-tab instance, set it.
-+           if (indexToActivate === this.activeTabIndex && !this.tabs[this.activeTabIndex].active) {
-+              this.tabs[this.activeTabIndex].active = true;
-+           }
+            if (indexToActivate === this.activeTabIndex && !this.tabs[this.activeTabIndex].active) {
+               this.tabs[this.activeTabIndex].active = true;
+            }
             if (indexToActivate !== -1) {
                 this.changeTab(this.activeTabIndex, indexToActivate)
             } else {
